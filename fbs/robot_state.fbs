@@ -1,0 +1,42 @@
+// Robot DataFlow Core - 机器人状态定义
+namespace RobotDataFlow.fbs;
+
+enum MessageType : byte { 
+    TELEMETRY = 0, 
+    CONTROL = 1, 
+    ESTOP = 2 
+}
+
+struct Vec3 {
+    x: float;
+    y: float;
+    z: float;
+}
+
+table Telemetry {
+    timestamp: uint64;
+    pos: Vec3;
+    vel: Vec3;
+    battery_voltage: float;
+    cpu_usage: float;
+}
+
+table ControlCommand {
+    timestamp: uint64;
+    linear_vel: Vec3;
+    angular_vel: Vec3;
+}
+
+union MessagePayload {
+    Telemetry,
+    ControlCommand
+}
+
+table RobotMessage {
+    type: MessageType;
+    seq: uint32;
+    // 使用 Union 来处理不同类型的消息
+    payload: MessagePayload; 
+}
+
+root_type RobotMessage;

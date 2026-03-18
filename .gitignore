@@ -1,0 +1,66 @@
+# ── 编译产物 ──────────────────────────────────────────────
+build/
+cmake-build-*/
+out/
+bin/
+lib/
+
+# ── CMake 缓存 ────────────────────────────────────────────
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+cmake_install.cmake
+install_manifest.txt
+Makefile
+*.cmake
+!CMakeLists.txt
+
+# ── FlatBuffers 生成文件（由 flatc 自动生成，不需入库）──
+*_generated.h
+*_generated.cpp
+
+# ── Python ────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+dist/
+.env
+.venv
+venv/
+
+# ── 编辑器 / IDE ──────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ── 运行时日志 / 核心转储 ─────────────────────────────────
+*.log
+core
+core.*
+vgcore.*
+
+# ── 编译器生成的中间文件 ──────────────────────────────────
+*.o
+*.a
+*.so
+*.so.*
+*.dylib
+*.d
+*.gcno
+*.gcda
+
+# ── 可执行文件（项目产物）────────────────────────────────
+dataflow_kernel
+
+# ── Zenoh 配置文件（可能包含 IP / 证书，不入库）─────────
+zenoh_config.json5
+zenoh_config.json
+*.pem
+*.key
+*.crt
