@@ -1,9 +1,12 @@
 #include "reactor.hpp"
-#include "robot_dataflow/spsc_queue.hpp"
-#include "robot_dataflow/latest_cache.hpp"
 #include "robot_state_generated.h"
 
-#include <iostream>
+#include <spdlog/spdlog.h>
+#include <flatbuffers/flatbuffers.h>
+
+#include <unistd.h>
+#include <poll.h>
+#include <chrono>
 #include <stdexcept>
 #include <cstring>
 #include <cerrno>
@@ -11,27 +14,16 @@
 namespace RobotDataFlow {
 
 // =============================================================================
-// 内部数据结构
-// =============================================================================
-
-struct CriticalSample {
-    uint64_t             handler_hash;
-    std::vector<uint8_t> payload;
-};
-
-// CRITICAL 通道：SPSC 无锁队列（深度 512，绝不丢帧）
-static SPSCQueue<CriticalSample, 512> critical_queue;
-
-// BACKGROUND 通道：Latest-only 缓存（只保最新帧，防积压）
-static LatestSampleCache background_cache;
-
-// =============================================================================
 // 回调上下文
+// v2.2: 扩展为含实例成员指针 + wakeup_fd，消除 static 全局依赖
 // =============================================================================
 
 struct CallbackContext {
-    uint64_t      handler_hash;
-    TopicPriority priority;
+    uint64_t                        handler_hash;
+    TopicPriority                   priority;
+    int                             wakeup_fd;       // eventfd，CRITICAL push 后写入
+    MPSCQueue<CriticalSample, 512>* critical_queue;  // 指向 Reactor 实例成员
+    LatestSampleCache*              background_cache; // 指向 Reactor 实例成员
 };
 
 // =============================================================================
@@ -42,62 +34,74 @@ struct CallbackContext {
 static void zenoh_data_callback(struct z_loaned_sample_t* sample, void* context) {
     auto* ctx = static_cast<CallbackContext*>(context);
 
-    // 读取 payload（Zenoh 1.8 API）
     const z_loaned_bytes_t* raw = z_sample_payload(sample);
     const size_t len = z_bytes_len(raw);
-    if (len == 0) return; // unlikely: 空包直接丢弃
+    if (len == 0) [[unlikely]] return;
 
     std::vector<uint8_t> buf(len);
     z_bytes_reader_t reader = z_bytes_get_reader(raw);
     z_bytes_reader_read(&reader, buf.data(), len);
 
-    // P2：FlatBuffers 协议盾牌（Header-only 校验，开销极低）
+    // FlatBuffers 协议盾牌
     {
         flatbuffers::Verifier v(buf.data(), buf.size());
-        if (!fbs::VerifyRobotMessageBuffer(v)) return; // 非法包丢弃
+        if (!fbs::VerifyRobotMessageBuffer(v)) [[unlikely]] return;
     }
 
-    // P0：双通道路由
-    if (ctx->priority == TopicPriority::CRITICAL) {
-        // CRITICAL：写入 SPSC 队列，绝不丢帧
+    if (ctx->priority != TopicPriority::BACKGROUND) {
+        // CRITICAL + NORMAL → MPSC 队列（无丢帧语义）
+        // v2.2 修复：NORMAL 原错误地走了 Latest-only（会静默丢弃遥测帧）
         CriticalSample cs{ctx->handler_hash, std::move(buf)};
-        critical_queue.push(std::move(cs));
+        const bool pushed = ctx->critical_queue->push(std::move(cs));
+
+        if (!pushed) [[unlikely]] {
+            spdlog::warn("[{}] MPSC FULL — frame dropped! total={}",
+                ctx->priority == TopicPriority::CRITICAL ? "CRITICAL" : "NORMAL",
+                ctx->critical_queue->dropped_count());
+        } else if (ctx->priority == TopicPriority::CRITICAL) {
+            // 仅 CRITICAL 触发 eventfd 主动唤醒（NORMAL 允许等 50ms 超时）
+            const uint64_t v = 1;
+            ::write(ctx->wakeup_fd, &v, sizeof(v));
+        }
     } else {
-        // BACKGROUND：写入 Latest-only 缓存，只保最新帧
-        background_cache.get_slot(ctx->handler_hash)->put(
-            ctx->handler_hash, buf.data(), buf.size());
+        // BACKGROUND → Latest-only 缓存（热路径无锁）
+        auto* slot = ctx->background_cache->get_slot_fast(ctx->handler_hash);
+        if (slot) [[likely]] {
+            slot->put(ctx->handler_hash, buf.data(), buf.size());
+        }
     }
 }
 
 // =============================================================================
 // Liveliness 断线保护回调
+// v2.2 修复：用正规 FlatBuffers 构建 EStop，不再使用硬编码字节
 // =============================================================================
 
-// 注：机器人端调用 z_liveliness_declare_token("robot/uav0/alive")
-// 断线后此 Token 自动变为 DELETE 事件，此处立即发布 E-Stop
 static void zenoh_liveliness_callback(struct z_loaned_sample_t* sample, void* context) {
     if (z_sample_kind(sample) != Z_SAMPLE_KIND_DELETE) {
-        std::cout << "[INFO] Robot liveliness restored." << std::endl;
+        spdlog::info("Robot liveliness restored.");
         return;
     }
+    spdlog::warn("Robot liveliness LOST — publishing EStop (FlatBuffers)!");
 
-    std::cerr << "[WARN] Robot liveliness LOST! Publishing E-Stop..." << std::endl;
-
-    // P3 修复：使用真实预声明的 Publisher 发布 E-Stop
     auto* pub = static_cast<z_owned_publisher_t*>(context);
 
-    // 构造最小 FlatBuffers E-Stop 消息（type=ESTOP, seq=0）
-    // 在紧急情况下优先速度——用预构建的静态字节而非动态 Builder
-    static const uint8_t ESTOP_MSG[] = {
-        0x0C, 0x00, 0x00, 0x00, // root offset = 12
-        0x00, 0x00, 0x00, 0x00, // file_identifier (unused)
-        0x08, 0x00, 0x08, 0x00, // vtable offset
-        0x02, 0x00, 0x00, 0x00, // type=ESTOP(2), seq=0
-    };
+    // 构建规范的 FlatBuffers EStop 消息（含实时时间戳）
+    flatbuffers::FlatBufferBuilder fbb(256);
+    const auto reason = fbb.CreateString("liveliness_lost");
+    const auto now_ns = static_cast<uint64_t>(
+        std::chrono::steady_clock::now().time_since_epoch().count());
+    const auto estop = fbs::CreateEStop(fbb, now_ns, reason);
+    const auto msg   = fbs::CreateRobotMessage(
+        fbb,
+        fbs::MessageType_ESTOP,
+        /*seq=*/0,
+        fbs::MessagePayload_EStop,
+        estop.Union());
+    fbb.Finish(msg);
 
     z_owned_bytes_t estop_bytes;
-    // E-Stop 消息仅 16 字节，micro-copy 开销可忽略，用 copy_from_buf 接受 const
-    z_bytes_copy_from_buf(&estop_bytes, ESTOP_MSG, sizeof(ESTOP_MSG));
+    z_bytes_copy_from_buf(&estop_bytes, fbb.GetBufferPointer(), fbb.GetSize());
     z_publisher_put(z_publisher_loan(pub), z_move(estop_bytes), nullptr);
 }
 
@@ -106,30 +110,27 @@ static void zenoh_liveliness_callback(struct z_loaned_sample_t* sample, void* co
 // =============================================================================
 
 DataFlowReactor::DataFlowReactor(const std::string& config_path,
-                                 const std::string& estop_publish_path)
-    : estop_publish_path_(estop_publish_path) {
-
-    // 1. 初始化 Zenoh 配置
+                                 const std::string& estop_publish_path,
+                                 const std::string& liveliness_key)
+    : estop_publish_path_(estop_publish_path)
+    , liveliness_key_(liveliness_key)
+{
+    // 1. Zenoh 会话
     z_owned_config_t config;
-    if (z_config_default(&config) != Z_OK) {
+    if (z_config_default(&config) != Z_OK)
         throw std::runtime_error("Failed to initialize Zenoh config");
-    }
-
-    // 2. 打开会话
-    if (z_open(&session_, z_move(config), nullptr) != Z_OK) {
+    if (z_open(&session_, z_move(config), nullptr) != Z_OK)
         throw std::runtime_error("Failed to open Zenoh session");
-    }
 
-    // 3. 预声明 E-Stop Publisher（设置 INTERACTIVE_HIGH 优先级）
+    // 2. E-Stop Publisher（INTERACTIVE_HIGH 优先级）
     {
         z_owned_keyexpr_t ke;
         z_publisher_options_t pub_opts;
         z_publisher_options_default(&pub_opts);
         pub_opts.priority = Z_PRIORITY_INTERACTIVE_HIGH;
 
-        if (z_keyexpr_from_str(&ke, estop_publish_path_.c_str()) != Z_OK) {
+        if (z_keyexpr_from_str(&ke, estop_publish_path_.c_str()) != Z_OK)
             throw std::runtime_error("Invalid E-Stop keyexpr: " + estop_publish_path_);
-        }
         if (z_declare_publisher(z_session_loan(&session_), &estop_publisher_,
                                 z_keyexpr_loan(&ke), &pub_opts) != Z_OK) {
             z_keyexpr_drop(z_move(ke));
@@ -138,12 +139,18 @@ DataFlowReactor::DataFlowReactor(const std::string& config_path,
         z_keyexpr_drop(z_move(ke));
     }
 
-    // 4. 初始化 io_uring
+    // 3. io_uring
     setup_io_uring();
+
+    // 4. eventfd（非阻塞，进程退出后内核自动关闭）
+    wakeup_fd_ = ::eventfd(0, EFD_NONBLOCK | EFD_CLOEXEC);
+    if (wakeup_fd_ < 0)
+        throw std::runtime_error(std::string("eventfd failed: ") + strerror(errno));
 }
 
 DataFlowReactor::~DataFlowReactor() {
     stop();
+    if (wakeup_fd_ >= 0) ::close(wakeup_fd_);
     io_uring_queue_exit(&ring_);
     z_publisher_drop(z_move(estop_publisher_));
     z_close(z_session_loan_mut(&session_), nullptr);
@@ -152,9 +159,16 @@ DataFlowReactor::~DataFlowReactor() {
 
 void DataFlowReactor::setup_io_uring() {
     int ret = io_uring_queue_init(64, &ring_, 0);
-    if (ret < 0) {
+    if (ret < 0)
         throw std::runtime_error("io_uring init failed: " + std::string(strerror(-ret)));
-    }
+}
+
+void DataFlowReactor::arm_poll_eventfd() {
+    struct io_uring_sqe* sqe = io_uring_get_sqe(&ring_);
+    if (!sqe) [[unlikely]] return; // SQ 满（极罕见），下次 handle_events 重试
+    io_uring_prep_poll_add(sqe, wakeup_fd_, POLLIN);
+    sqe->user_data = 1; // tag=1 标识 eventfd 事件
+    io_uring_submit(&ring_);
 }
 
 std::expected<void, ReactorError> DataFlowReactor::run() {
@@ -162,16 +176,28 @@ std::expected<void, ReactorError> DataFlowReactor::run() {
 
     std::vector<std::unique_ptr<CallbackContext>> contexts;
 
-    // P0 修复：从 handler.path 动态绑定 Key Expression（不再硬编码路径）
+    // 1. 预分配 BACKGROUND 槽位（v2.2: 仅 BACKGROUND，不再错误包含 NORMAL）
+    for (auto& handler : handlers_) {
+        if (handler.priority == TopicPriority::BACKGROUND) {
+            background_cache_.pre_allocate(handler.path_hash);
+        }
+    }
+
+    // 2. 声明订阅者（含 wakeup_fd 和实例指针的上下文）
     for (auto& handler : handlers_) {
         z_owned_keyexpr_t ke;
         if (z_keyexpr_from_str(&ke, handler.path.c_str()) != Z_OK) {
-            std::cerr << "[WARN] Invalid keyexpr: " << handler.path << std::endl;
+            spdlog::warn("Invalid keyexpr: {}", handler.path);
             continue;
         }
 
-        auto ctx = std::make_unique<CallbackContext>(
-            CallbackContext{handler.path_hash, handler.priority});
+        auto ctx = std::make_unique<CallbackContext>(CallbackContext{
+            .handler_hash     = handler.path_hash,
+            .priority         = handler.priority,
+            .wakeup_fd        = wakeup_fd_,
+            .critical_queue   = &critical_queue_,
+            .background_cache = &background_cache_,
+        });
 
         z_owned_closure_sample_t cb;
         z_closure_sample(&cb, zenoh_data_callback, nullptr, ctx.get());
@@ -181,15 +207,15 @@ std::expected<void, ReactorError> DataFlowReactor::run() {
                 z_move(cb), nullptr) == Z_OK) {
             contexts.push_back(std::move(ctx));
         } else {
-            std::cerr << "[WARN] Failed to subscribe: " << handler.path << std::endl;
+            spdlog::warn("Failed to subscribe: {}", handler.path);
         }
         z_keyexpr_drop(z_move(ke));
     }
 
-    // P3 修复：Liveliness 订阅传入真实 Publisher 指针
+    // 3. Liveliness 订阅
     {
         z_owned_keyexpr_t ke;
-        if (z_keyexpr_from_str(&ke, "robot/**") == Z_OK) {
+        if (z_keyexpr_from_str(&ke, liveliness_key_.c_str()) == Z_OK) {
             z_owned_closure_sample_t lv_cb;
             z_closure_sample(&lv_cb, zenoh_liveliness_callback, nullptr, &estop_publisher_);
             z_liveliness_declare_background_subscriber(
@@ -199,33 +225,49 @@ std::expected<void, ReactorError> DataFlowReactor::run() {
         }
     }
 
-    std::cout << "[INFO] FlowKernel started (dual-channel + Liveliness + pmr pool)" << std::endl;
+    // 4. 首次 arm eventfd poll
+    arm_poll_eventfd();
+
+    spdlog::info("FlowKernel v2.2 — io_uring+eventfd | MPSC dual-priority | pmr pool");
+    spdlog::info("Liveliness key: {}", liveliness_key_);
     for (auto& h : handlers_) {
-        const char* ch = (h.priority == TopicPriority::CRITICAL)    ? "CRITICAL"
-                       : (h.priority == TopicPriority::BACKGROUND)  ? "BACKGROUND"
-                                                                     : "NORMAL";
-        std::cout << "[INFO]   [" << ch << "] " << h.path << std::endl;
+        const char* ch = (h.priority == TopicPriority::CRITICAL)   ? "CRITICAL  "
+                       : (h.priority == TopicPriority::BACKGROUND) ? "BACKGROUND"
+                                                                   : "NORMAL    ";
+        spdlog::info("  [{}] {}", ch, h.path);
     }
 
     while (running_.load(std::memory_order_acquire)) {
         handle_events();
     }
-
     return {};
 }
 
 void DataFlowReactor::stop() noexcept {
     running_.store(false, std::memory_order_release);
+    // 主动写 eventfd 唤醒等待中的 io_uring，让 run() 尽快退出
+    if (wakeup_fd_ >= 0) {
+        const uint64_t v = 1;
+        ::write(wakeup_fd_, &v, sizeof(v));
+    }
 }
 
 void DataFlowReactor::register_handler(
     const std::string& path,
     TopicPriority priority,
-    std::function<void(std::span<const uint8_t>)> callback) {
-
+    std::function<void(std::span<const uint8_t>)> callback)
+{
     uint64_t hash = fnv1a_hash(std::string_view(path));
-    // 修复：同时存储原始路径字符串（用于动态订阅）和哈希（用于 O(1) 分发）
+    size_t   idx  = handlers_.size();
     handlers_.push_back({path, hash, priority, std::move(callback)});
+    handler_index_.emplace(hash, idx);
+}
+
+void DataFlowReactor::print_stats() const {
+    uint64_t d = critical_queue_.dropped_count();
+    if (d > 0)
+        spdlog::warn("[STAT] CRITICAL+NORMAL queue: total_dropped={} frames", d);
+    background_cache_.print_drop_stats();
 }
 
 // =============================================================================
@@ -236,42 +278,44 @@ constexpr size_t BACKPRESSURE_WARN_THRESHOLD = 200;
 
 [[gnu::hot]]
 void DataFlowReactor::handle_events() {
-    // pmr 内存池重置（O(1) 回收本周期所有分配，消灭堆碎片）
     pool_.release();
 
-    // 1. CRITICAL 通道（绝对优先）
+    // 1. CRITICAL + NORMAL 通道（MPSC，绝对优先）
     CriticalSample cs;
-    int critical_count = 0;
-    while (critical_queue.pop(cs)) {
-        for (auto& h : handlers_) {
-            if (h.path_hash == cs.handler_hash && h.priority == TopicPriority::CRITICAL) {
-                h.callback(std::span<const uint8_t>(cs.payload));
-                break;
-            }
-        }
-        ++critical_count;
+    int processed = 0;
+    while (critical_queue_.pop(cs)) {
+        auto it = handler_index_.find(cs.handler_hash);
+        if (it != handler_index_.end()) [[likely]]
+            handlers_[it->second].callback(std::span<const uint8_t>(cs.payload));
+        ++processed;
     }
+    if (processed > static_cast<int>(BACKPRESSURE_WARN_THRESHOLD)) [[unlikely]]
+        spdlog::warn("MPSC backpressure: {} frames/cycle", processed);
 
-    if (critical_count > static_cast<int>(BACKPRESSURE_WARN_THRESHOLD)) {
-        std::cerr << "[WARN] CRITICAL backpressure: " << critical_count << " frames/cycle\n";
-    }
-
-    // 2. BACKGROUND 通道（Latest-only 去积压）
-    background_cache.drain([this](uint64_t hash, std::vector<uint8_t>&& payload) {
-        for (auto& h : handlers_) {
-            if (h.path_hash == hash && h.priority != TopicPriority::CRITICAL) {
-                h.callback(std::span<const uint8_t>(payload));
-                break;
-            }
-        }
+    // 2. BACKGROUND 通道（Latest-only）
+    background_cache_.drain([this](uint64_t hash, std::vector<uint8_t>&& payload) {
+        auto it = handler_index_.find(hash);
+        if (it != handler_index_.end()) [[likely]]
+            handlers_[it->second].callback(std::span<const uint8_t>(payload));
     });
 
-    // 3. io_uring 精确休眠 5ms（零 CPU 忙轮询）
-    struct io_uring_cqe* cqe;
-    struct __kernel_timespec ts{.tv_sec = 0, .tv_nsec = 5'000'000};
+    // 3. io_uring 等待：eventfd 唤醒（CRITICAL 到达）或 50ms 超时（BACKGROUND 轮询）
+    //
+    //  - CRITICAL 到达 → callback 写 wakeup_fd_ → CQE 立即就绪 → Reactor 唤醒
+    //  - 无事件       → 50ms 后超时 → 轮询一次 BACKGROUND Latest-only 缓存
+    //  - stop() 调用  → 也写 wakeup_fd_ → 立即唤醒 → running_ 为 false → 退出
+    struct io_uring_cqe* cqe = nullptr;
+    struct __kernel_timespec ts{.tv_sec = 0, .tv_nsec = 50'000'000}; // 50ms
     if (int ret = io_uring_wait_cqe_timeout(&ring_, &cqe, &ts); ret == 0) {
+        if (cqe->user_data == 1) {
+            // 消费 eventfd 计数器（必须读出，否则 POLLIN 不复位）
+            uint64_t val;
+            ::read(wakeup_fd_, &val, sizeof(val));
+        }
         io_uring_cqe_seen(&ring_, cqe);
+        arm_poll_eventfd(); // POLL_ADD 一次性，必须重新提交
     }
+    // ret == -ETIME：超时，静默返回，下一轮循环处理积累的 BACKGROUND 帧
 }
 
 } // namespace RobotDataFlow
