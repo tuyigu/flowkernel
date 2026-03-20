@@ -12,9 +12,10 @@ find_package(Threads REQUIRED)
 find_package(zenohc REQUIRED)
 find_program(FLATC_EXECUTABLE flatc REQUIRED)
 
-# Find liburing
+# Find liburing and spdlog
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBURING REQUIRED liburing)
+pkg_check_modules(SPDLOG   REQUIRED spdlog)
 
 # Include Directories
 include_directories(include)
@@ -35,8 +36,16 @@ add_executable(dataflow_kernel
     src/reactor.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/robot_state_generated.h
 )
-target_include_directories(dataflow_kernel PRIVATE ${LIBURING_INCLUDE_DIRS})
-target_link_libraries(dataflow_kernel zenohc::lib ${LIBURING_LIBRARIES})
+target_include_directories(dataflow_kernel PRIVATE ${LIBURING_INCLUDE_DIRS} ${SPDLOG_INCLUDE_DIRS})
+target_link_libraries(dataflow_kernel zenohc::lib ${LIBURING_LIBRARIES} ${SPDLOG_LIBRARIES})
+target_compile_options(dataflow_kernel PRIVATE -Wno-interference-size ${SPDLOG_CFLAGS_OTHER})
 
 # Install
 install(TARGETS dataflow_kernel DESTINATION bin)
+
+# ── 基准测试（无需 Zenoh，仅依赖 spdlog + pthread）──────────────────────────
+add_executable(bench test/bench.cpp)
+target_include_directories(bench PRIVATE include ${SPDLOG_INCLUDE_DIRS})
+target_link_libraries(bench Threads::Threads ${SPDLOG_LIBRARIES})
+target_compile_options(bench PRIVATE
+    -O2 -march=native -Wno-interference-size ${SPDLOG_CFLAGS_OTHER})

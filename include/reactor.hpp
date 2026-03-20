@@ -21,6 +21,8 @@
 
 namespace RobotDataFlow {
 
+struct CallbackContext; // Forward decl
+
 // ── MPSC 队列元素（CRITICAL + NORMAL 通道共用）────────────────────────────────
 // v2.2: 从 reactor.cpp 移至头文件，供实例成员声明使用
 struct CriticalSample {
@@ -155,6 +157,8 @@ private:
 
     alignas(hardware_destructive_interference_size) std::vector<Handler> handlers_;
     std::unordered_map<uint64_t, size_t> handler_index_;
+
+    std::vector<std::unique_ptr<CallbackContext>> contexts_;
 
     // ── 双通道数据结构（实例成员，多 Reactor 实例安全）──────────────────────
     // v2.2 修复：原为 static 文件级全局，移入实例，消除多机场景队列混用 bug。

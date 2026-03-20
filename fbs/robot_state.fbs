@@ -1,10 +1,10 @@
 // Robot DataFlow Core - 机器人状态定义
 namespace RobotDataFlow.fbs;
 
-enum MessageType : byte { 
-    TELEMETRY = 0, 
-    CONTROL = 1, 
-    ESTOP = 2 
+enum MessageType : byte {
+    TELEMETRY = 0,
+    CONTROL   = 1,
+    ESTOP     = 2
 }
 
 struct Vec3 {
@@ -14,29 +14,36 @@ struct Vec3 {
 }
 
 table Telemetry {
-    timestamp: uint64;
-    pos: Vec3;
-    vel: Vec3;
+    timestamp:       uint64;
+    pos:             Vec3;
+    vel:             Vec3;
     battery_voltage: float;
-    cpu_usage: float;
+    cpu_usage:       float;
 }
 
 table ControlCommand {
-    timestamp: uint64;
-    linear_vel: Vec3;
+    timestamp:   uint64;
+    linear_vel:  Vec3;
     angular_vel: Vec3;
 }
 
+/// E-Stop 消息：显式建模急停指令，消除 reactor.cpp 中的硬编码字节
+table EStop {
+    timestamp: uint64;
+    reason:    string;  // 触发原因（如 "liveliness_lost", "manual"）
+}
+
+/// 所有消息 payload 类型均通过此 union 表达，保持 Schema 与实现一致
 union MessagePayload {
     Telemetry,
-    ControlCommand
+    ControlCommand,
+    EStop          // ← 修复：不再需要硬编码字节，统一走 FlatBuffers 序列化
 }
 
 table RobotMessage {
-    type: MessageType;
-    seq: uint32;
-    // 使用 Union 来处理不同类型的消息
-    payload: MessagePayload; 
+    type:    MessageType;
+    seq:     uint32;
+    payload: MessagePayload;
 }
 
 root_type RobotMessage;

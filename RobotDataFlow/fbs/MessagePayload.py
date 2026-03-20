@@ -2,7 +2,9 @@
 
 # namespace: fbs
 
+# 所有消息 payload 类型均通过此 union 表达，保持 Schema 与实现一致
 class MessagePayload(object):
     NONE = 0
     Telemetry = 1
     ControlCommand = 2
+    EStop = 3

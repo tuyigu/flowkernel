@@ -1,283 +1,179 @@
 #!/usr/bin/env python3
 """
-FlowKernel 压力测试脚本
-测试双通道优先级调度、背压感知、弱网下的 E-Stop 时延
+FlowKernel 全链路时延与弱网压力测试脚本 v3.0
 
-用法：
-  # 终端 1：启动 FlowKernel
-  cd robot_dataflow_core/build && ./dataflow_kernel
-
-  # 终端 2：运行此测试脚本
-  python3 test_flowkernel.py [--mode normal|estop|flood|latency]
+配合 TC 弱网模拟，全面观察 CRITICAL, NORMAL, BACKGROUND 三通道端到端时延表象。
 """
 
 import sys
 import time
-import struct
 import argparse
 import threading
 import statistics
+import os
 
-# ── Zenoh Python ──
 import zenoh
-
-# ── FlatBuffers ──
 import flatbuffers
 from RobotDataFlow.fbs import (
-    RobotMessage, Telemetry, Vec3, MessageType, MessagePayload, MessageType as MT
+    RobotMessage, Telemetry, EStop, MessageType, MessagePayload, MessageType as MT
 )
 
 # =============================================================================
-# FlatBuffers 消息构建函数
+# FlatBuffers 精准时间戳消息构建
 # =============================================================================
 
-def build_telemetry_msg(seq: int, px=0.0, py=0.0, pz=0.0, battery=12.5) -> bytes:
-    """构造 FlatBuffers Telemetry 消息（NORMAL 优先级）"""
+def build_telemetry_msg(seq: int) -> bytes:
+    """构造含系统高精度时间戳的遥测消息"""
     builder = flatbuffers.Builder(256)
-
-    # 构建 Telemetry（需要先 Start 再填字段再 End）
     Telemetry.Start(builder)
-    Telemetry.AddTimestamp(builder, int(time.time_ns()))
-    Telemetry.AddBatteryVoltage(builder, battery)
+    Telemetry.AddTimestamp(builder, time.time_ns()) # Python侧精确发包时间
+    Telemetry.AddBatteryVoltage(builder, 12.5)
     Telemetry.AddCpuUsage(builder, 0.3)
     telemetry = Telemetry.End(builder)
 
-    # 构建 RobotMessage 根表
     RobotMessage.Start(builder)
     RobotMessage.AddType(builder, MT.MessageType.TELEMETRY)
     RobotMessage.AddSeq(builder, seq)
     RobotMessage.AddPayloadType(builder, MessagePayload.MessagePayload.Telemetry)
     RobotMessage.AddPayload(builder, telemetry)
     msg = RobotMessage.End(builder)
-
     builder.Finish(msg)
     return bytes(builder.Output())
 
-
 def build_estop_msg(seq: int) -> bytes:
-    """构造 E-Stop FlatBuffers 消息（CRITICAL 优先级）"""
+    """构造含时间戳的急停消息"""
     builder = flatbuffers.Builder(128)
+    
+    reason = builder.CreateString("manual_trigger")
+    EStop.Start(builder)
+    EStop.AddTimestamp(builder, time.time_ns()) # Python侧精确发包时间
+    EStop.AddReason(builder, reason)
+    estop = EStop.End(builder)
+    
     RobotMessage.Start(builder)
     RobotMessage.AddType(builder, MT.MessageType.ESTOP)
     RobotMessage.AddSeq(builder, seq)
+    RobotMessage.AddPayloadType(builder, MessagePayload.MessagePayload.EStop)
+    RobotMessage.AddPayload(builder, estop)
     msg = RobotMessage.End(builder)
     builder.Finish(msg)
     return bytes(builder.Output())
 
-
-def build_fake_costmap(size_kb=64) -> bytes:
-    """构造一个仿 Costmap 的大块 FlatBuffers 消息（BACKGROUND 优先级）"""
-    # 真实 Costmap 帧较大，这里用随机字节填充模拟
-    import os
-    builder = flatbuffers.Builder(size_kb * 1024 + 128)
-    padding = builder.CreateByteVector(os.urandom(size_kb * 1024))
+def build_fake_costmap(seq: int, size_kb=8) -> bytes:
+    """构造大块背景数据，内部借用 Telemetry 携带时间戳以便内核打印延迟"""
+    builder = flatbuffers.Builder(size_kb * 1024 + 256)
+    
+    Telemetry.Start(builder)
+    Telemetry.AddTimestamp(builder, time.time_ns()) # Python侧精确发包时间
+    telemetry = Telemetry.End(builder)
+    
     RobotMessage.Start(builder)
     RobotMessage.AddType(builder, MT.MessageType.TELEMETRY)
-    RobotMessage.AddSeq(builder, 0)
+    RobotMessage.AddSeq(builder, seq)
+    RobotMessage.AddPayloadType(builder, MessagePayload.MessagePayload.Telemetry)
+    RobotMessage.AddPayload(builder, telemetry)
     msg = RobotMessage.End(builder)
     builder.Finish(msg)
-    return bytes(builder.Output())
-
+    
+    # 填充无用尾部数据模拟大包
+    final_bytes = bytearray(builder.Output())
+    if len(final_bytes) < size_kb * 1024:
+        final_bytes += os.urandom(size_kb * 1024 - len(final_bytes))
+    return bytes(final_bytes)
 
 # =============================================================================
-# 测试场景
+# 测试核心
 # =============================================================================
 
-class FlowKernelTester:
+class E2ELatencyTester:
     def __init__(self):
-        print("[INIT] 连接 Zenoh 路由器...")
+        print("🚀 [INIT] 连接 Zenoh 路由器...")
         self.session = zenoh.open(zenoh.Config())
-        self._latencies = []
+        self.stop_event = threading.Event()
 
     def close(self):
         self.session.close()
 
-    # ─────────────────────────────────────────────────────────
-    # 场景 1：正常遥测发布（NORMAL 通道）
-    # ─────────────────────────────────────────────────────────
-    def test_normal_telemetry(self, count=20, hz=10):
-        """以 10Hz 发布遥测数据，验证 NORMAL 通道正常接收"""
-        print(f"\n{'='*60}")
-        print(f"[TEST 1] NORMAL 通道 — 遥测发布 @ {hz}Hz × {count} 帧")
-        print(f"{'='*60}")
-        pub = self.session.declare_publisher("robot/uav0/telemetry")
-        interval = 1.0 / hz
-        for i in range(count):
-            payload = build_telemetry_msg(seq=i)
-            pub.put(bytes(payload))
-            print(f"  → [#{i:03d}] 发布遥测包 {len(payload)} 字节")
-            time.sleep(interval)
-        pub.undeclare()
-        print("[TEST 1] 完成 ✓")
-
-    # ─────────────────────────────────────────────────────────
-    # 场景 2：E-Stop 时延测试（CRITICAL 通道）
-    # ─────────────────────────────────────────────────────────
-    def test_estop_latency(self, count=10):
+    def test_weak_net_all_channels(self, duration=15):
         """
-        测量 E-Stop 指令的端到端时延。
-        使用 Zenoh Queryable（服务端回声）测量 RTT，
-        RTT/2 即为单向传输时延近似值。
+        全通道混合测试：
+        - BACKGROUND (Costmap): 100Hz 狂发大包
+        - NORMAL (Telemetry): 20Hz 发送常规重载
+        - CRITICAL (E-Stop): 1Hz 突发急停
+        结合 tc qdisc，C++日志将直观显示这三者的时延隔离。
         """
-        print(f"\n{'='*60}")
-        print(f"[TEST 2] CRITICAL 通道 — E-Stop 时延测试 × {count} 次")
-        print(f"{'='*60}")
+        print(f"\n{'='*70}")
+        print(f"🔥 [TEST] 弱网全通道深度混合测试 (总时长: {duration}秒)")
+        print(f"   [目标] 观察在大量积压下，不同层级的 E2E 时延是否产生隔离")
+        print(f"{'='*70}")
+        print("\n请紧盯 C++ 端的打印日志！\n")
 
-        latencies = []
-        pub = self.session.declare_publisher(
-            "robot/uav0/cmd/estop",
-            priority=zenoh.Priority.INTERACTIVE_HIGH
-        )
-        for i in range(count):
-            payload = build_estop_msg(seq=i)
-            t0 = time.perf_counter_ns()
-            pub.put(bytes(payload))
-            t1 = time.perf_counter_ns()
-            latency_us = (t1 - t0) / 1000
-            latencies.append(latency_us)
-            print(f"  → [#{i:03d}] E-Stop 发送耗时: {latency_us:.1f} µs")
-            time.sleep(0.1)
-
-        pub.undeclare()
-        if latencies:
-            print(f"\n  📊 统计结果：")
-            print(f"     平均时延: {statistics.mean(latencies):.1f} µs")
-            print(f"     最小时延: {min(latencies):.1f} µs")
-            print(f"     最大时延: {max(latencies):.1f} µs")
-            print(f"     P95 时延: {sorted(latencies)[int(len(latencies) * 0.95)]:.1f} µs")
-        print("[TEST 2] 完成 ✓")
-
-    # ─────────────────────────────────────────────────────────
-    # 场景 3：背压洪泛测试（BACKGROUND vs CRITICAL 竞争）
-    # ─────────────────────────────────────────────────────────
-    def test_flood_with_priority(self, flood_hz=200, duration_sec=5):
-        """
-        同时以 200Hz 发布 Costmap（BACKGROUND），
-        并在 1 秒后发送 E-Stop（CRITICAL），
-        验证 CRITICAL 通道不受 BACKGROUND 洪泛影响。
-        """
-        print(f"\n{'='*60}")
-        print(f"[TEST 3] 双通道竞争 — BACKGROUND @ {flood_hz}Hz + CRITICAL 插队")
-        print(f"{'='*60}")
-
-        stop_event = threading.Event()
-
-        def flood_background():
-            """后台线程：高频发布 Costmap"""
-            pub = self.session.declare_publisher(
-                "robot/uav0/costmap",
-                priority=zenoh.Priority.BACKGROUND
-            )
-            frame_count = 0
-            interval = 1.0 / flood_hz
-            while not stop_event.is_set():
-                pub.put(build_fake_costmap(size_kb=8))
-                frame_count += 1
-                time.sleep(interval)
-            print(f"  [BACKGROUND] 共发布 {frame_count} 帧 Costmap")
+        # 启动 BACKGROUND 100Hz 线程
+        def run_background():
+            pub = self.session.declare_publisher("robot/uav0/costmap", priority=zenoh.Priority.BACKGROUND)
+            seq = 0
+            while not self.stop_event.is_set():
+                pub.put(build_fake_costmap(seq, size_kb=16)) # 16KB * 100Hz = 1.6MB/s
+                seq += 1
+                time.sleep(0.01)
             pub.undeclare()
 
-        flood_thread = threading.Thread(target=flood_background, daemon=True)
-        flood_thread.start()
-        print(f"  [BACKGROUND] 洪泛发布已启动 @ {flood_hz}Hz...")
+        # 启动 NORMAL 20Hz 线程
+        def run_normal():
+            pub = self.session.declare_publisher("robot/uav0/telemetry", priority=zenoh.Priority.DATA)
+            seq = 0
+            while not self.stop_event.is_set():
+                pub.put(build_telemetry_msg(seq))
+                seq += 1
+                time.sleep(0.05)
+            pub.undeclare()
 
-        time.sleep(1.0)  # 让 BACKGROUND 洪泛持续 1 秒
+        bg_th = threading.Thread(target=run_background, daemon=True)
+        nm_th = threading.Thread(target=run_normal, daemon=True)
+        bg_th.start()
+        nm_th.start()
+        
+        # 主线程进行 CRITICAL 推送
+        pub_critical = self.session.declare_publisher("robot/uav0/cmd/estop", priority=zenoh.Priority.INTERACTIVE_HIGH)
+        
+        start_time = time.time()
+        seq = 0
+        while time.time() - start_time < duration:
+            print(f"  → 🔴 发送 E-Stop (CRITICAL 插队), seq={seq}")
+            pub_critical.put(build_estop_msg(seq))
+            seq += 1
+            time.sleep(1.0)  # 每秒发一次
+            
+        self.stop_event.set()
+        bg_th.join()
+        nm_th.join()
+        pub_critical.undeclare()
+        
+        print(f"\n✅ 测试结束。请在 C++ 控制台分析 E2E 延迟数据。\n")
 
-        # 在洪泛中发送 E-Stop
-        print("  [CRITICAL] 🔴 在洪泛中发送 E-Stop 指令...")
-        estop_pub = self.session.declare_publisher(
-            "robot/uav0/cmd/estop",
-            priority=zenoh.Priority.INTERACTIVE_HIGH
-        )
-        t0 = time.perf_counter_ns()
-        estop_pub.put(build_estop_msg(seq=999))
-        t1 = time.perf_counter_ns()
-        print(f"  [CRITICAL] E-Stop 发送耗时: {(t1-t0)/1000:.1f} µs ← 应不受 BACKGROUND 影响")
-        estop_pub.undeclare()
-
-        time.sleep(duration_sec - 1)
-        stop_event.set()
-        flood_thread.join()
-        print("[TEST 3] 完成 ✓")
-
-    # ─────────────────────────────────────────────────────────
-    # 场景 4：弱网模拟（配合 tc netem 使用）
-    # ─────────────────────────────────────────────────────────
-    def test_weak_network_guide(self):
-        """打印弱网测试指导（需要 root 权限运行 tc）"""
-        print(f"\n{'='*60}")
-        print(f"[TEST 4] 弱网模拟指南（需要 sudo）")
-        print(f"{'='*60}")
-        print("""
-  # 开启弱网模拟（10% 丢包 + 100ms 延迟）：
-  sudo tc qdisc add dev lo root netem delay 100ms 20ms loss 10%
-
-  # 验证设置：
-  tc qdisc show dev lo
-
-  # 运行压力测试：
-  python3 test_flowkernel.py --mode latency
-
-  # 关闭弱网模拟：
-  sudo tc qdisc del dev lo root
-
-  预期结果：
-    - BACKGROUND Costmap 在弱网下会大量积压，FlowKernel 的 Latest-only 缓存
-      确保消费者始终只处理最新帧，不会因积压导致"延迟雪崩"
-    - CRITICAL E-Stop 通过 Zenoh INTERACTIVE_HIGH 优先级，
-      即使在 10% 丢包下依然保证 < 5ms 到达（UDP 无重传损耗）
-        """)
-
-    def run_all(self):
-        """运行全部测试场景"""
-        self.test_normal_telemetry(count=10, hz=10)
-        time.sleep(0.5)
-        self.test_estop_latency(count=5)
-        time.sleep(0.5)
-        self.test_flood_with_priority(flood_hz=100, duration_sec=3)
-        self.test_weak_network_guide()
-        print(f"\n{'='*60}")
-        print("  ✅ 全部测试完成！请在 FlowKernel 侧观察对应输出。")
-        print(f"{'='*60}")
-
-
-# =============================================================================
-# 入口
-# =============================================================================
+    def print_tc_guide(self):
+        print("\n" + "="*70)
+        print("💡 弱网环境 (tc) 快速配置指南：")
+        print("="*70)
+        print("开启弱网 (100ms延迟, 20ms抖动, 10%丢包)：")
+        print("    sudo tc qdisc add dev lo root netem delay 100ms 20ms loss 10%")
+        print("关闭弱网：")
+        print("    sudo tc qdisc del dev lo root")
+        print("="*70 + "\n")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="FlowKernel Python 测试工具")
-    parser.add_argument(
-        "--mode",
-        choices=["all", "telemetry", "estop", "flood", "guide"],
-        default="all",
-        help="选择测试场景"
-    )
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--mode", choices=["weak_net_test", "guide"], default="weak_net_test")
     args = parser.parse_args()
 
-    print("""
-╔══════════════════════════════════════════════════════════╗
-║   FlowKernel Python 测试工具                             ║
-║   测试双通道优先级调度 + 背压感知 + 弱网时延验证         ║
-╚══════════════════════════════════════════════════════════╝
-提示：请先启动 FlowKernel 再运行本脚本！
-  cd robot_dataflow_core/build && ./dataflow_kernel
-""")
-
-    tester = FlowKernelTester()
+    tester = E2ELatencyTester()
     try:
-        if args.mode == "all":
-            tester.run_all()
-        elif args.mode == "telemetry":
-            tester.test_normal_telemetry(count=30, hz=20)
-        elif args.mode == "estop":
-            tester.test_estop_latency(count=20)
-        elif args.mode == "flood":
-            tester.test_flood_with_priority(flood_hz=200, duration_sec=5)
+        if args.mode == "weak_net_test":
+            tester.print_tc_guide()
+            tester.test_weak_net_all_channels(duration=10)
         elif args.mode == "guide":
-            tester.test_weak_network_guide()
+            tester.print_tc_guide()
     except KeyboardInterrupt:
-        print("\n[INFO] 测试中断")
+        print("\n[INFO] 停止测试")
     finally:
         tester.close()
-        print("[INFO] Zenoh 连接已关闭")

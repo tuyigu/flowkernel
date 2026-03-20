@@ -165,7 +165,10 @@ void DataFlowReactor::setup_io_uring() {
 
 void DataFlowReactor::arm_poll_eventfd() {
     struct io_uring_sqe* sqe = io_uring_get_sqe(&ring_);
-    if (!sqe) [[unlikely]] return; // SQ 满（极罕见），下次 handle_events 重试
+    if (!sqe) [[unlikely]] {
+        spdlog::warn("io_uring SQ full! Cannot arm eventfd, fallback to 50ms timeout.");
+        return; // SQ 满（极罕见），下次 handle_events 重试
+    }
     io_uring_prep_poll_add(sqe, wakeup_fd_, POLLIN);
     sqe->user_data = 1; // tag=1 标识 eventfd 事件
     io_uring_submit(&ring_);
@@ -174,7 +177,7 @@ void DataFlowReactor::arm_poll_eventfd() {
 std::expected<void, ReactorError> DataFlowReactor::run() {
     running_.store(true, std::memory_order_release);
 
-    std::vector<std::unique_ptr<CallbackContext>> contexts;
+    contexts_.clear(); // Clear any previous instance runs
 
     // 1. 预分配 BACKGROUND 槽位（v2.2: 仅 BACKGROUND，不再错误包含 NORMAL）
     for (auto& handler : handlers_) {
@@ -205,7 +208,7 @@ std::expected<void, ReactorError> DataFlowReactor::run() {
         if (z_declare_background_subscriber(
                 z_session_loan(&session_), z_keyexpr_loan(&ke),
                 z_move(cb), nullptr) == Z_OK) {
-            contexts.push_back(std::move(ctx));
+            contexts_.push_back(std::move(ctx));
         } else {
             spdlog::warn("Failed to subscribe: {}", handler.path);
         }
