@@ -14,6 +14,8 @@
 #include <expected>
 #include <span>
 #include <array>
+#include <chrono>
+#include <deque>
 
 #include "robot_dataflow/common.hpp"
 #include "robot_dataflow/mpsc_queue.hpp"
@@ -22,6 +24,37 @@
 namespace RobotDataFlow {
 
 struct CallbackContext; // Forward decl
+
+/**
+ * @brief 通道统计信息
+ */
+struct ChannelStats {
+    uint64_t processed = 0;         // 已处理帧数
+    uint64_t dropped = 0;           // 丢弃帧数
+    double   avg_latency_us = 0.0;  // 平均延迟 (微秒)
+    double   p95_latency_us = 0.0;  // P95 延迟
+    double   p99_latency_us = 0.0;  // P99 延迟
+};
+
+/**
+ * @brief 会话信息
+ */
+struct SessionInfo {
+    std::string robot_id;
+    bool        online = false;
+    uint64_t    last_seen_ms = 0;   // 最后一次收到数据的时间戳
+};
+
+/**
+ * @brief 处理器状态
+ */
+struct HandlerStatus {
+    std::string   path;
+    std::string   priority;
+    std::string   description;
+    bool          active = false;
+    uint64_t      total_processed = 0;
+};
 
 // ── MPSC 队列元素（CRITICAL + NORMAL 通道共用）────────────────────────────────
 // v2.2: 从 reactor.cpp 移至头文件，供实例成员声明使用
@@ -107,6 +140,46 @@ public:
                           std::function<void(std::span<const uint8_t>)> callback);
 
     void print_stats() const;
+    
+    /**
+     * @brief 获取 CRITICAL 通道统计
+     */
+    ChannelStats get_critical_stats() const;
+    
+    /**
+     * @brief 获取 NORMAL 通道统计
+     */
+    ChannelStats get_normal_stats() const;
+    
+    /**
+     * @brief 获取 BACKGROUND 通道统计
+     */
+    ChannelStats get_background_stats() const;
+    
+    /**
+     * @brief 获取所有会话信息
+     */
+    std::vector<SessionInfo> get_sessions() const;
+    
+    /**
+     * @brief 获取所有处理器状态
+     */
+    std::vector<HandlerStatus> get_handler_statuses() const;
+    
+    /**
+     * @brief 重置所有统计数据
+     */
+    void reset_stats();
+    
+    /**
+     * @brief 获取运行时长（秒）
+     */
+    double get_uptime_seconds() const;
+    
+    /**
+     * @brief 记录延迟样本（用于统计计算）
+     */
+    void record_latency(TopicPriority priority, double latency_us);
 
 private:
     void setup_io_uring();
@@ -142,6 +215,26 @@ private:
 
     // ── 运行控制 ──────────────────────────────────────────────────────────────
     std::atomic<bool> running_{false};
+    std::chrono::steady_clock::time_point start_time_;
+    
+    // ── 统计数据 ──────────────────────────────────────────────────────────────
+    mutable std::atomic<uint64_t> critical_processed_{0};
+    mutable std::atomic<uint64_t> critical_dropped_{0};
+    mutable std::atomic<uint64_t> normal_processed_{0};
+    mutable std::atomic<uint64_t> normal_dropped_{0};
+    mutable std::atomic<uint64_t> background_processed_{0};
+    mutable std::atomic<uint64_t> background_dropped_{0};
+    
+    // 延迟样本存储（滑动窗口）
+    static constexpr size_t LATENCY_WINDOW_SIZE = 1000;
+    mutable std::deque<double> critical_latencies_;
+    mutable std::deque<double> normal_latencies_;
+    mutable std::deque<double> background_latencies_;
+    mutable std::mutex latency_mutex_;
+    
+    // 会话追踪
+    mutable std::unordered_map<std::string, uint64_t> session_last_seen_;
+    mutable std::mutex session_mutex_;
 
     // ── pmr 内存池（消灭高频 malloc 堆碎片）──────────────────────────────────
     alignas(64) std::array<std::byte, 1024 * 1024> pool_buf_;

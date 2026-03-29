@@ -4,6 +4,7 @@
 #include <array>
 #include <mutex>
 #include <cstdint>
+#include <type_traits>
 #include "common.hpp"
 
 namespace RobotDataFlow {
@@ -60,7 +61,7 @@ public:
             return false;
         }
 
-        buffer_[t] = std::move(item);
+        new (get_ptr(t)) T(std::move(item));
         tail_.store(next, std::memory_order_release);
         push_lock_.clear(std::memory_order_release);
         return true;
@@ -77,7 +78,8 @@ public:
         if (h == tail_.load(std::memory_order_acquire)) {
             return false; // 队列为空
         }
-        item = std::move(buffer_[h]);
+        item = std::move(*get_ptr(h));
+        get_ptr(h)->~T();
         head_.store((h + 1) & (Capacity - 1), std::memory_order_release);
         return true;
     }
@@ -92,14 +94,21 @@ public:
 private:
     std::atomic_flag push_lock_ = ATOMIC_FLAG_INIT; // 仅保护生产者侧，用自旋锁替代重量级 mutex
 
-
-    std::array<T, Capacity> buffer_;
+    // 使用 aligned_storage 避免要求 T 有默认构造函数
+    struct Storage {
+        alignas(T) unsigned char data[sizeof(T)];
+    };
+    std::array<Storage, Capacity> buffer_;
 
     // head（消费者）和 tail（生产者）对齐到不同缓存行，防止伪共享
     alignas(hardware_destructive_interference_size) std::atomic<size_t> head_;
     alignas(hardware_destructive_interference_size) std::atomic<size_t> tail_;
 
     std::atomic<uint64_t> dropped_; // 满队时累计丢帧数
+
+    // 辅助函数：获取缓冲区中元素的引用
+    T* get_ptr(size_t index) { return reinterpret_cast<T*>(&buffer_[index]); }
+    const T* get_ptr(size_t index) const { return reinterpret_cast<const T*>(&buffer_[index]); }
 };
 
 } // namespace RobotDataFlow

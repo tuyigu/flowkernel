@@ -1,0 +1,142 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install System Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            liburing-dev \
+            flatbuffers-compiler \
+            libspdlog-dev \
+            pkg-config
+      
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+      
+      - name: Install zenoh-c
+        run: |
+          git clone https://github.com/eclipse-zenoh/zenoh-c.git /tmp/zenoh-c
+          cd /tmp/zenoh-c
+          mkdir build && cd build
+          cmake .. -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+          make -j$(nproc)
+          sudo make install
+          sudo ldconfig
+      
+      - name: Configure CMake
+        run: |
+          cmake -B build \
+            -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} \
+            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+      
+      - name: Build
+        run: cmake --build build --config ${{env.BUILD_TYPE}} -j$(nproc)
+      
+      - name: Run Unit Tests
+        working-directory: build
+        run: |
+          ./test_mpsc_queue
+          ./test_latest_cache
+          ./test_config
+      
+      - name: Run Benchmark
+        working-directory: build
+        run: ./bench || true  # Benchmark 可能需要更长时间
+      
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: flowkernel-binary
+          path: build/dataflow_kernel
+          retention-days: 7
+
+  code-quality:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Check Code Formatting
+        run: |
+          sudo apt-get install -y clang-format
+          find src include -name "*.cpp" -o -name "*.hpp" | \
+            xargs clang-format --dry-run --Werror || true
+      
+      - name: Run clang-tidy
+        run: |
+          sudo apt-get install -y clang-tidy
+          # 需要先构建以生成 compile_commands.json
+          echo "clang-tidy check skipped (requires full build environment)"
+
+  coverage:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            liburing-dev \
+            flatbuffers-compiler \
+            libspdlog-dev \
+            pkg-config \
+            lcov
+      
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+      
+      - name: Install zenoh-c
+        run: |
+          git clone https://github.com/eclipse-zenoh/zenoh-c.git /tmp/zenoh-c
+          cd /tmp/zenoh-c
+          mkdir build && cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Debug
+          make -j$(nproc)
+          sudo make install
+          sudo ldconfig
+      
+      - name: Build with Coverage
+        run: |
+          cmake -B build \
+            -DCMAKE_BUILD_TYPE=Debug \
+            -DCMAKE_CXX_FLAGS="--coverage"
+          cmake --build build -j$(nproc)
+      
+      - name: Run Tests
+        working-directory: build
+        run: |
+          ./test_mpsc_queue
+          ./test_latest_cache
+          ./test_config
+      
+      - name: Generate Coverage Report
+        run: |
+          lcov --capture --directory build --output-file coverage.info
+          lcov --remove coverage.info '/usr/*' --output-file coverage.info
+          lcov --list coverage.info
+      
+      - name: Upload Coverage
+        uses: codecov/codecov-action@v4
+        if: success()
+        with:
+          files: coverage.info
+          fail_ci_if_error: false

@@ -10,6 +10,8 @@
 #include <stdexcept>
 #include <cstring>
 #include <cerrno>
+#include <algorithm>
+#include <numeric>
 
 namespace RobotDataFlow {
 
@@ -271,6 +273,150 @@ void DataFlowReactor::print_stats() const {
     if (d > 0)
         spdlog::warn("[STAT] CRITICAL+NORMAL queue: total_dropped={} frames", d);
     background_cache_.print_drop_stats();
+}
+
+ChannelStats DataFlowReactor::get_critical_stats() const {
+    ChannelStats stats;
+    stats.processed = critical_processed_.load(std::memory_order_relaxed);
+    stats.dropped = critical_dropped_.load(std::memory_order_relaxed);
+    
+    std::lock_guard<std::mutex> lock(latency_mutex_);
+    if (!critical_latencies_.empty()) {
+        std::vector<double> sorted(critical_latencies_.begin(), critical_latencies_.end());
+        std::sort(sorted.begin(), sorted.end());
+        
+        stats.avg_latency_us = std::accumulate(sorted.begin(), sorted.end(), 0.0) / sorted.size();
+        size_t p95_idx = static_cast<size_t>(sorted.size() * 0.95);
+        size_t p99_idx = static_cast<size_t>(sorted.size() * 0.99);
+        stats.p95_latency_us = sorted[std::min(p95_idx, sorted.size() - 1)];
+        stats.p99_latency_us = sorted[std::min(p99_idx, sorted.size() - 1)];
+    }
+    return stats;
+}
+
+ChannelStats DataFlowReactor::get_normal_stats() const {
+    ChannelStats stats;
+    stats.processed = normal_processed_.load(std::memory_order_relaxed);
+    stats.dropped = normal_dropped_.load(std::memory_order_relaxed);
+    
+    std::lock_guard<std::mutex> lock(latency_mutex_);
+    if (!normal_latencies_.empty()) {
+        std::vector<double> sorted(normal_latencies_.begin(), normal_latencies_.end());
+        std::sort(sorted.begin(), sorted.end());
+        
+        stats.avg_latency_us = std::accumulate(sorted.begin(), sorted.end(), 0.0) / sorted.size();
+        size_t p95_idx = static_cast<size_t>(sorted.size() * 0.95);
+        size_t p99_idx = static_cast<size_t>(sorted.size() * 0.99);
+        stats.p95_latency_us = sorted[std::min(p95_idx, sorted.size() - 1)];
+        stats.p99_latency_us = sorted[std::min(p99_idx, sorted.size() - 1)];
+    }
+    return stats;
+}
+
+ChannelStats DataFlowReactor::get_background_stats() const {
+    ChannelStats stats;
+    stats.processed = background_processed_.load(std::memory_order_relaxed);
+    stats.dropped = background_dropped_.load(std::memory_order_relaxed);
+    
+    std::lock_guard<std::mutex> lock(latency_mutex_);
+    if (!background_latencies_.empty()) {
+        std::vector<double> sorted(background_latencies_.begin(), background_latencies_.end());
+        std::sort(sorted.begin(), sorted.end());
+        
+        stats.avg_latency_us = std::accumulate(sorted.begin(), sorted.end(), 0.0) / sorted.size();
+        size_t p95_idx = static_cast<size_t>(sorted.size() * 0.95);
+        size_t p99_idx = static_cast<size_t>(sorted.size() * 0.99);
+        stats.p95_latency_us = sorted[std::min(p95_idx, sorted.size() - 1)];
+        stats.p99_latency_us = sorted[std::min(p99_idx, sorted.size() - 1)];
+    }
+    return stats;
+}
+
+std::vector<SessionInfo> DataFlowReactor::get_sessions() const {
+    std::lock_guard<std::mutex> lock(session_mutex_);
+    std::vector<SessionInfo> sessions;
+    
+    auto now = std::chrono::duration_cast<std::chrono::milliseconds>(
+        std::chrono::steady_clock::now().time_since_epoch()).count();
+    
+    for (const auto& [robot_id, last_seen] : session_last_seen_) {
+        SessionInfo info;
+        info.robot_id = robot_id;
+        info.last_seen_ms = now - last_seen;
+        info.online = (info.last_seen_ms < 5000);  // 5秒内有数据视为在线
+        sessions.push_back(std::move(info));
+    }
+    return sessions;
+}
+
+std::vector<HandlerStatus> DataFlowReactor::get_handler_statuses() const {
+    std::vector<HandlerStatus> statuses;
+    for (const auto& handler : handlers_) {
+        HandlerStatus status;
+        status.path = handler.path;
+        status.active = true;
+        
+        switch (handler.priority) {
+            case TopicPriority::CRITICAL:
+                status.priority = "CRITICAL";
+                status.total_processed = critical_processed_.load(std::memory_order_relaxed);
+                break;
+            case TopicPriority::NORMAL:
+                status.priority = "NORMAL";
+                status.total_processed = normal_processed_.load(std::memory_order_relaxed);
+                break;
+            case TopicPriority::BACKGROUND:
+                status.priority = "BACKGROUND";
+                status.total_processed = background_processed_.load(std::memory_order_relaxed);
+                break;
+        }
+        statuses.push_back(std::move(status));
+    }
+    return statuses;
+}
+
+void DataFlowReactor::reset_stats() {
+    critical_processed_.store(0, std::memory_order_relaxed);
+    critical_dropped_.store(0, std::memory_order_relaxed);
+    normal_processed_.store(0, std::memory_order_relaxed);
+    normal_dropped_.store(0, std::memory_order_relaxed);
+    background_processed_.store(0, std::memory_order_relaxed);
+    background_dropped_.store(0, std::memory_order_relaxed);
+    
+    std::lock_guard<std::mutex> lock(latency_mutex_);
+    critical_latencies_.clear();
+    normal_latencies_.clear();
+    background_latencies_.clear();
+}
+
+double DataFlowReactor::get_uptime_seconds() const {
+    auto now = std::chrono::steady_clock::now();
+    return std::chrono::duration<double>(now - start_time_).count();
+}
+
+void DataFlowReactor::record_latency(TopicPriority priority, double latency_us) {
+    std::lock_guard<std::mutex> lock(latency_mutex_);
+    
+    switch (priority) {
+        case TopicPriority::CRITICAL:
+            critical_latencies_.push_back(latency_us);
+            if (critical_latencies_.size() > LATENCY_WINDOW_SIZE) {
+                critical_latencies_.pop_front();
+            }
+            break;
+        case TopicPriority::NORMAL:
+            normal_latencies_.push_back(latency_us);
+            if (normal_latencies_.size() > LATENCY_WINDOW_SIZE) {
+                normal_latencies_.pop_front();
+            }
+            break;
+        case TopicPriority::BACKGROUND:
+            background_latencies_.push_back(latency_us);
+            if (background_latencies_.size() > LATENCY_WINDOW_SIZE) {
+                background_latencies_.pop_front();
+            }
+            break;
+    }
 }
 
 // =============================================================================

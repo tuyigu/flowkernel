@@ -1,0 +1,45 @@
+# FlowKernel 配置文件
+# 所有参数均可在此文件中配置，无需修改代码
+
+server:
+  name: "FlowKernel"
+  version: "2.4"
+  log_level: "info"  # debug/info/warn/error
+
+zenoh:
+  config_path: ""  # Zenoh 配置文件路径（可选，留空使用默认）
+
+# 通道配置
+channels:
+  critical:
+    queue_size: 512
+    wakeup_mode: "eventfd"  # eventfd / polling
+  normal:
+    queue_size: 512
+  background:
+    strategy: "latest_only"
+    max_age_ms: 200
+
+# Liveliness 监测配置
+liveliness:
+  key: "robot/**"
+  estop_publish_path: "robot/*/cmd/estop"
+
+# 话题处理器配置
+handlers:
+  - path: "robot/*/cmd/estop"
+    priority: "CRITICAL"
+    description: "急停指令"
+  - path: "robot/uav0/telemetry"
+    priority: "NORMAL"
+    description: "无人机遥测数据"
+  - path: "robot/*/costmap"
+    priority: "BACKGROUND"
+    description: "代价地图（高频背景数据）"
+
+# TUI 配置
+tui:
+  enabled: true
+  refresh_rate_ms: 100  # TUI 刷新频率（毫秒）
+  show_banner: false    # 是否显示启动 banner
+  color_theme: "dark"   # dark/light

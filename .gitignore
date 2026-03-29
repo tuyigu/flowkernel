@@ -67,3 +67,4 @@ zenoh_config.json
 *.pem
 *.key
 *.crt
+resume/
