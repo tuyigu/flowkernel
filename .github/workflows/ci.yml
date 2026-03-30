@@ -22,6 +22,7 @@ jobs:
           sudo apt-get install -y \
             liburing-dev \
             flatbuffers-compiler \
+            libflatbuffers-dev \
             libspdlog-dev \
             pkg-config
       
@@ -97,6 +98,7 @@ jobs:
           sudo apt-get install -y \
             liburing-dev \
             flatbuffers-compiler \
+            libflatbuffers-dev \
             libspdlog-dev \
             pkg-config \
             lcov
