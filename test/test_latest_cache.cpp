@@ -189,6 +189,126 @@ TEST_F(LatestCacheTest, MultipleSlotsIndependent) {
     ASSERT_EQ(result2->second[0], 20);
 }
 
+// 并发测试：pre_allocate和get_slot_fast并发执行
+TEST_F(LatestCacheTest, ConcurrentPreAllocateAndGetSlotFast) {
+    constexpr int num_pre_allocate_threads = 2;
+    constexpr int num_get_slot_fast_threads = 4;
+    constexpr int operations_per_thread = 100;
+    
+    std::atomic<bool> stop_flag{false};
+    std::atomic<int> pre_allocate_count{0};
+    std::atomic<int> get_slot_fast_count{0};
+    std::atomic<int> null_slot_count{0};
+    
+    // 线程1：持续调用pre_allocate添加新槽位
+    std::vector<std::thread> pre_allocate_threads;
+    for (int t = 0; t < num_pre_allocate_threads; ++t) {
+        pre_allocate_threads.emplace_back([&, t]() {
+            for (int i = 0; i < operations_per_thread; ++i) {
+                uint64_t hash = 10000 + t * operations_per_thread + i;
+                cache.pre_allocate(hash);
+                pre_allocate_count.fetch_add(1, std::memory_order_relaxed);
+            }
+        });
+    }
+    
+    // 线程2：持续调用get_slot_fast读取槽位
+    std::vector<std::thread> get_slot_fast_threads;
+    for (int t = 0; t < num_get_slot_fast_threads; ++t) {
+        get_slot_fast_threads.emplace_back([&]() {
+            while (!stop_flag.load(std::memory_order_acquire)) {
+                // 随机查询一个hash
+                uint64_t hash = 10000 + (get_slot_fast_count.load() % (num_pre_allocate_threads * operations_per_thread));
+                auto* slot = cache.get_slot_fast(hash);
+                get_slot_fast_count.fetch_add(1, std::memory_order_relaxed);
+                if (slot == nullptr) {
+                    null_slot_count.fetch_add(1, std::memory_order_relaxed);
+                }
+            }
+        });
+    }
+    
+    // 等待pre_allocate线程完成
+    for (auto& t : pre_allocate_threads) {
+        t.join();
+    }
+    
+    // 停止get_slot_fast线程
+    stop_flag.store(true, std::memory_order_release);
+    for (auto& t : get_slot_fast_threads) {
+        t.join();
+    }
+    
+    // 验证：所有pre_allocate操作都应该成功
+    ASSERT_EQ(pre_allocate_count.load(), num_pre_allocate_threads * operations_per_thread);
+    
+    // 验证：get_slot_fast操作应该完成（不会崩溃或死锁）
+    ASSERT_GT(get_slot_fast_count.load(), 0);
+    
+    // 验证：最终所有槽位都应该存在
+    for (int t = 0; t < num_pre_allocate_threads; ++t) {
+        for (int i = 0; i < operations_per_thread; ++i) {
+            uint64_t hash = 10000 + t * operations_per_thread + i;
+            auto* slot = cache.get_slot_fast(hash);
+            ASSERT_NE(slot, nullptr) << "Slot " << hash << " should exist";
+        }
+    }
+}
+
+// 并发测试：drain和pre_allocate并发执行
+TEST_F(LatestCacheTest, ConcurrentDrainAndPreAllocate) {
+    constexpr int num_pre_allocate_threads = 2;
+    constexpr int num_drain_threads = 2;
+    constexpr int operations_per_thread = 50;
+    
+    std::atomic<bool> stop_flag{false};
+    std::atomic<int> pre_allocate_count{0};
+    std::atomic<int> drain_count{0};
+    
+    // 线程1：持续调用pre_allocate添加新槽位
+    std::vector<std::thread> pre_allocate_threads;
+    for (int t = 0; t < num_pre_allocate_threads; ++t) {
+        pre_allocate_threads.emplace_back([&, t]() {
+            for (int i = 0; i < operations_per_thread; ++i) {
+                uint64_t hash = 20000 + t * operations_per_thread + i;
+                cache.pre_allocate(hash);
+                pre_allocate_count.fetch_add(1, std::memory_order_relaxed);
+            }
+        });
+    }
+    
+    // 线程2：持续调用drain消费数据
+    std::vector<std::thread> drain_threads;
+    for (int t = 0; t < num_drain_threads; ++t) {
+        drain_threads.emplace_back([&]() {
+            // 至少执行一次drain操作
+            do {
+                cache.drain([](uint64_t, std::vector<uint8_t>&&) {
+                    // 空回调，只消费数据
+                });
+                drain_count.fetch_add(1, std::memory_order_relaxed);
+            } while (!stop_flag.load(std::memory_order_acquire));
+        });
+    }
+    
+    // 等待pre_allocate线程完成
+    for (auto& t : pre_allocate_threads) {
+        t.join();
+    }
+    
+    // 停止drain线程
+    stop_flag.store(true, std::memory_order_release);
+    for (auto& t : drain_threads) {
+        t.join();
+    }
+    
+    // 验证：所有pre_allocate操作都应该成功
+    ASSERT_EQ(pre_allocate_count.load(), num_pre_allocate_threads * operations_per_thread);
+    
+    // 验证：drain操作应该完成（不会崩溃或死锁）
+    ASSERT_GT(drain_count.load(), 0);
+}
+
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

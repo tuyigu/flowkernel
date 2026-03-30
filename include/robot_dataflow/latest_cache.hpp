@@ -6,6 +6,7 @@
 #include <memory>
 #include <optional>
 #include <mutex>
+#include <shared_mutex>
 #include <unordered_map>
 
 namespace RobotDataFlow {
@@ -94,7 +95,7 @@ public:
      * 必须在 get_slot_fast() 被调用前完成所有预分配。
      */
     void pre_allocate(uint64_t hash) {
-        std::lock_guard<std::mutex> lock(map_mtx_);
+        std::unique_lock<std::shared_mutex> lock(map_mtx_);
         slots_.try_emplace(hash, std::make_unique<LatestSampleSlot>());
     }
 
@@ -108,6 +109,7 @@ public:
      */
     [[gnu::hot]]
     LatestSampleSlot* get_slot_fast(uint64_t hash) const noexcept {
+        std::shared_lock<std::shared_mutex> lock(map_mtx_);
         auto it = slots_.find(hash);
         return (it != slots_.end()) ? it->second.get() : nullptr;
     }
@@ -116,7 +118,7 @@ public:
      * @brief [兼容旧接口] 惰性创建槽位（初始化阶段使用，持写锁）
      */
     LatestSampleSlot* get_slot(uint64_t hash) {
-        std::lock_guard<std::mutex> lock(map_mtx_);
+        std::unique_lock<std::shared_mutex> lock(map_mtx_);
         auto [it, _] = slots_.try_emplace(hash, std::make_unique<LatestSampleSlot>());
         return it->second.get();
     }
@@ -125,7 +127,7 @@ public:
      * @brief 遍历所有槽位，消费每个话题的最新帧
      */
     void drain(std::function<void(uint64_t, std::vector<uint8_t>&&)> consumer) {
-        // map 在运行期只读，无需 map_mtx_；槽位内部有各自的 slot::mtx
+        std::shared_lock<std::shared_mutex> lock(map_mtx_);
         for (auto& [hash, slot] : slots_) {
             auto sample = slot->take();
             if (sample) {
@@ -138,6 +140,7 @@ public:
      * @brief 返回所有 BACKGROUND 话题的累计丢帧统计
      */
     void print_drop_stats() const {
+        std::shared_lock<std::shared_mutex> lock(map_mtx_);
         for (auto& [hash, slot] : slots_) {
             uint64_t d = slot->drop_count.load(std::memory_order_relaxed);
             if (d > 0) {
@@ -152,7 +155,7 @@ public:
 
 private:
     mutable std::unordered_map<uint64_t, std::unique_ptr<LatestSampleSlot>> slots_;
-    mutable std::mutex map_mtx_; // 仅在初始化阶段（pre_allocate/get_slot）使用
+    mutable std::shared_mutex map_mtx_; // 读写锁：写操作（pre_allocate）使用unique_lock，读操作（get_slot_fast/drain/print_drop_stats）使用shared_lock
 };
 
 } // namespace RobotDataFlow
