@@ -1,0 +1,8 @@
+[package]
+name = "flowkernel-cache"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Latest-only sample cache for high-frequency background data"
+
+[dependencies]

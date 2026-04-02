@@ -100,9 +100,10 @@ public:
     }
 
     /**
-     * @brief [热路径] 无锁获取槽位指针
+     * @brief [热路径] 低开销获取槽位指针（使用读锁，不阻塞其他读操作）
      *
      * 前提：map 在运行期只读（pre_allocate 已完成）。
+     * 使用 shared_lock 允许多个读操作并发执行，不会阻塞彼此。
      * unordered_map::find() 读操作在 map 不变时是线程安全的。
      *
      * @return 槽位指针（已预分配则非空，否则 nullptr）

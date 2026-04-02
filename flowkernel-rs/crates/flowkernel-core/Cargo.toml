@@ -1,0 +1,17 @@
+[package]
+name = "flowkernel-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Core Reactor for FlowKernel - high-performance robot dataflow middleware"
+
+[dependencies]
+flowkernel-queue = { path = "../flowkernel-queue" }
+flowkernel-cache = { path = "../flowkernel-cache" }
+
+bytes = "1"
+tokio = { workspace = true }
+zenoh = { workspace = true }
+tracing = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }

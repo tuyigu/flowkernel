@@ -116,6 +116,7 @@ DataFlowReactor::DataFlowReactor(const std::string& config_path,
                                  const std::string& liveliness_key)
     : estop_publish_path_(estop_publish_path)
     , liveliness_key_(liveliness_key)
+    , start_time_(std::chrono::steady_clock::now())
 {
     // 1. Zenoh 会话
     z_owned_config_t config;
@@ -431,22 +432,38 @@ void DataFlowReactor::handle_events() {
 
     // 1. CRITICAL + NORMAL 通道（MPSC，绝对优先）
     CriticalSample cs;
-    int processed = 0;
+    uint64_t critical_count = 0;
+    uint64_t normal_count = 0;
     while (critical_queue_.pop(cs)) {
         auto it = handler_index_.find(cs.handler_hash);
-        if (it != handler_index_.end()) [[likely]]
+        if (it != handler_index_.end()) [[likely]] {
             handlers_[it->second].callback(std::span<const uint8_t>(cs.payload));
-        ++processed;
+            
+            // 根据 handler 的优先级统计
+            if (handlers_[it->second].priority == TopicPriority::CRITICAL) {
+                ++critical_count;
+            } else {
+                ++normal_count;
+            }
+        }
     }
-    if (processed > static_cast<int>(BACKPRESSURE_WARN_THRESHOLD)) [[unlikely]]
-        spdlog::warn("MPSC backpressure: {} frames/cycle", processed);
+    critical_processed_.fetch_add(critical_count, std::memory_order_relaxed);
+    normal_processed_.fetch_add(normal_count, std::memory_order_relaxed);
+    
+    uint64_t total_processed = critical_count + normal_count;
+    if (total_processed > BACKPRESSURE_WARN_THRESHOLD) [[unlikely]]
+        spdlog::warn("MPSC backpressure: {} frames/cycle", total_processed);
 
     // 2. BACKGROUND 通道（Latest-only）
-    background_cache_.drain([this](uint64_t hash, std::vector<uint8_t>&& payload) {
+    uint64_t background_count = 0;
+    background_cache_.drain([this, &background_count](uint64_t hash, std::vector<uint8_t>&& payload) {
         auto it = handler_index_.find(hash);
-        if (it != handler_index_.end()) [[likely]]
+        if (it != handler_index_.end()) [[likely]] {
             handlers_[it->second].callback(std::span<const uint8_t>(payload));
+            ++background_count;
+        }
     });
+    background_processed_.fetch_add(background_count, std::memory_order_relaxed);
 
     // 3. io_uring 等待：eventfd 唤醒（CRITICAL 到达）或 50ms 超时（BACKGROUND 轮询）
     //

@@ -1,0 +1,19 @@
+[package]
+name = "flowkernel-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "CLI tool for FlowKernel"
+
+[[bin]]
+name = "flowkernel"
+path = "src/main.rs"
+
+[dependencies]
+flowkernel-core = { path = "../flowkernel-core" }
+
+clap = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+anyhow = { workspace = true }

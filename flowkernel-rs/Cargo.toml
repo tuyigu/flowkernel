@@ -1,0 +1,50 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/flowkernel-core",
+    "crates/flowkernel-queue",
+    "crates/flowkernel-cache",
+    "crates/flowkernel-cli",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+description = "High-performance robot dataflow middleware powered by Zenoh"
+repository = "https://github.com/tuyigu/flowkernel"
+
+[workspace.dependencies]
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+
+# Zenoh - native Rust SDK!
+zenoh = "1.2"
+zenoh-config = "1.2"
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_yaml = "0.9"
+flatbuffers = "24"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Utilities
+anyhow = "1"
+thiserror = "2"
+
+# Cache padding for lock-free data structures
+crossbeam-utils = "0.8"
+
+# CLI
+clap = { version = "4", features = ["derive"] }
+
+# Testing
+criterion = { version = "0.5", features = ["html_reports"] }
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
