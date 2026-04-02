@@ -1,0 +1,34 @@
+# 编译产物
+/target/
+
+# rustfmt备份文件
+**/*.rs.bk
+
+# cargo本地配置（可能包含本地路径）
+.cargo/
+
+# IDE相关（Rust Analyzer等）
+.vscode/
+.idea/
+
+# 临时文件
+*.swp
+*.swo
+*~
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+
+# 代码覆盖率
+*.profraw
+*.profdata
+lcov.info
+
+# Criterion基准测试报告
+benches/reports/
+
+# flamegraph性能分析
+flamegraph.svg
+perf.data
+perf.data.old
