@@ -23,8 +23,6 @@
 
 namespace RobotDataFlow {
 
-struct CallbackContext; // Forward decl
-
 /**
  * @brief 通道统计信息
  */
@@ -57,10 +55,11 @@ struct HandlerStatus {
 };
 
 // ── MPSC 队列元素（CRITICAL + NORMAL 通道共用）────────────────────────────────
-// v2.2: 从 reactor.cpp 移至头文件，供实例成员声明使用
+// v2.3: 加入 enqueue_time 字段，用于计算端到端延迟
 struct CriticalSample {
-    uint64_t             handler_hash;
-    std::vector<uint8_t> payload;
+    uint64_t                                      handler_hash;
+    std::vector<uint8_t>                          payload;
+    std::chrono::steady_clock::time_point         enqueue_time;
 };
 
 /**
@@ -87,6 +86,21 @@ enum class ReactorError {
     HandlerRegistrationFailed,
     BackpressureHigh,
     LivelinessLost,
+};
+
+/**
+ * @brief 回调上下文（zenoh callback 中访问，v2.3 扩展 session 追踪）
+ * 注：放在 TopicPriority/CriticalSample 之后，以便使用这些类型
+ */
+struct CallbackContext {
+    uint64_t                                      handler_hash;
+    TopicPriority                                 priority;
+    int                                           wakeup_fd;          // eventfd
+    MPSCQueue<CriticalSample, 512>*               critical_queue;     // 指向 Reactor 实例成员
+    LatestSampleCache*                            background_cache;   // 指向 Reactor 实例成员
+    std::unordered_map<std::string, uint64_t>*    session_last_seen;  // 指向 Reactor 实例成员
+    std::mutex*                                   session_mtx;        // 指向 Reactor 实例的 session_mutex_
+    const std::vector<std::string>*               handler_paths;      // 指向 Reactor 的 handler path 列表
 };
 
 /**
@@ -224,6 +238,12 @@ private:
     mutable std::atomic<uint64_t> normal_dropped_{0};
     mutable std::atomic<uint64_t> background_processed_{0};
     mutable std::atomic<uint64_t> background_dropped_{0};
+    // v2.3: 最近一个处理周期的计数，用于 dropped 比例分配
+    uint64_t critical_count_last_{0};
+    uint64_t normal_count_last_{0};
+    // v2.3: dropped 增量追踪（实例级，避免 static 多实例串扰）
+    uint64_t last_queue_dropped_{0};
+    uint64_t last_bg_dropped_{0};
     
     // 延迟样本存储（滑动窗口）
     static constexpr size_t LATENCY_WINDOW_SIZE = 1000;
@@ -250,6 +270,7 @@ private:
 
     alignas(hardware_destructive_interference_size) std::vector<Handler> handlers_;
     std::unordered_map<uint64_t, size_t> handler_index_;
+    std::vector<std::string> handler_paths_;  // hash → path 反查（用于 session 追踪）
 
     std::vector<std::unique_ptr<CallbackContext>> contexts_;
 

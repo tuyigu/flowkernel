@@ -31,6 +31,15 @@ public:
 
     MPSCQueue() : head_(0), tail_(0), dropped_(0) {}
 
+    ~MPSCQueue() {
+        size_t h = head_.load(std::memory_order_relaxed);
+        size_t t = tail_.load(std::memory_order_relaxed);
+        while (h != t) {
+            get_ptr(h)->~T();
+            h = (h + 1) & (Capacity - 1);
+        }
+    }
+
     // 禁止拷贝
     MPSCQueue(const MPSCQueue&) = delete;
     MPSCQueue& operator=(const MPSCQueue&) = delete;

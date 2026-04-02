@@ -8,6 +8,7 @@
 #include <poll.h>
 #include <chrono>
 #include <stdexcept>
+#include <cstdlib>
 #include <cstring>
 #include <cerrno>
 #include <algorithm>
@@ -15,18 +16,7 @@
 
 namespace RobotDataFlow {
 
-// =============================================================================
-// 回调上下文
-// v2.2: 扩展为含实例成员指针 + wakeup_fd，消除 static 全局依赖
-// =============================================================================
-
-struct CallbackContext {
-    uint64_t                        handler_hash;
-    TopicPriority                   priority;
-    int                             wakeup_fd;       // eventfd，CRITICAL push 后写入
-    MPSCQueue<CriticalSample, 512>* critical_queue;  // 指向 Reactor 实例成员
-    LatestSampleCache*              background_cache; // 指向 Reactor 实例成员
-};
+// CallbackContext 已移至 include/reactor.hpp（v2.3 扩展 session 追踪）
 
 // =============================================================================
 // Zenoh 数据接收回调（热路径）
@@ -50,10 +40,31 @@ static void zenoh_data_callback(struct z_loaned_sample_t* sample, void* context)
         if (!fbs::VerifyRobotMessageBuffer(v)) [[unlikely]] return;
     }
 
+    // v2.3: Session 追踪 — 从 keyexpr 提取 robot_id 并更新最后可见时间
+    {
+        const z_loaned_keyexpr_t* kexpr = z_sample_keyexpr(sample);
+        z_view_string_t key_str;
+        z_keyexpr_as_view_string(kexpr, &key_str);
+        auto key_len = z_string_len(z_loan(key_str));
+        if (key_len > 0) {
+            auto key_data = z_string_data(z_loan(key_str));
+            auto key_sv = std::string_view(key_data, key_len);
+            // key 格式: "robot/<id>/..." → 提取 "robot/<id>"
+            auto second_slash = key_sv.find('/', 6);
+            if (second_slash != std::string_view::npos) {
+                auto robot_id = std::string(key_sv.substr(0, second_slash));
+                auto now_ms = std::chrono::duration_cast<std::chrono::milliseconds>(
+                    std::chrono::steady_clock::now().time_since_epoch()).count();
+                std::lock_guard<std::mutex> lock(*ctx->session_mtx);
+                (*ctx->session_last_seen)[robot_id] = now_ms;
+            }
+        }
+    }
+
     if (ctx->priority != TopicPriority::BACKGROUND) {
         // CRITICAL + NORMAL → MPSC 队列（无丢帧语义）
-        // v2.2 修复：NORMAL 原错误地走了 Latest-only（会静默丢弃遥测帧）
-        CriticalSample cs{ctx->handler_hash, std::move(buf)};
+        // v2.3: 加入 enqueue_time 用于端到端延迟计算
+        CriticalSample cs{ctx->handler_hash, std::move(buf), std::chrono::steady_clock::now()};
         const bool pushed = ctx->critical_queue->push(std::move(cs));
 
         if (!pushed) [[unlikely]] {
@@ -118,8 +129,12 @@ DataFlowReactor::DataFlowReactor(const std::string& config_path,
     , liveliness_key_(liveliness_key)
     , start_time_(std::chrono::steady_clock::now())
 {
-    // 1. Zenoh 会话
+    // 1. Zenoh 会话（v2.3: 支持自定义配置文件路径）
     z_owned_config_t config;
+    if (!config_path.empty()) {
+        // 设置环境变量后调用默认初始化（Zenoh C API 会读取该路径）
+        setenv("ZENOH_CONFIG", config_path.c_str(), 1);
+    }
     if (z_config_default(&config) != Z_OK)
         throw std::runtime_error("Failed to initialize Zenoh config");
     if (z_open(&session_, z_move(config), nullptr) != Z_OK)
@@ -198,11 +213,14 @@ std::expected<void, ReactorError> DataFlowReactor::run() {
         }
 
         auto ctx = std::make_unique<CallbackContext>(CallbackContext{
-            .handler_hash     = handler.path_hash,
-            .priority         = handler.priority,
-            .wakeup_fd        = wakeup_fd_,
-            .critical_queue   = &critical_queue_,
-            .background_cache = &background_cache_,
+            .handler_hash       = handler.path_hash,
+            .priority           = handler.priority,
+            .wakeup_fd          = wakeup_fd_,
+            .critical_queue     = &critical_queue_,
+            .background_cache   = &background_cache_,
+            .session_last_seen  = &session_last_seen_,
+            .session_mtx        = &session_mutex_,
+            .handler_paths      = &handler_paths_,
         });
 
         z_owned_closure_sample_t cb;
@@ -267,6 +285,7 @@ void DataFlowReactor::register_handler(
     size_t   idx  = handlers_.size();
     handlers_.push_back({path, hash, priority, std::move(callback)});
     handler_index_.emplace(hash, idx);
+    handler_paths_.push_back(path);  // v2.3: 保存 path 供回调中 session 追踪
 }
 
 void DataFlowReactor::print_stats() const {
@@ -384,6 +403,12 @@ void DataFlowReactor::reset_stats() {
     background_processed_.store(0, std::memory_order_relaxed);
     background_dropped_.store(0, std::memory_order_relaxed);
     
+    // v2.3: 重置 dropped/latency baseline，防止 reset 后计数跳跃
+    last_queue_dropped_ = critical_queue_.dropped_count();
+    last_bg_dropped_ = background_cache_.get_total_dropped();
+    critical_count_last_ = 0;
+    normal_count_last_ = 0;
+    
     std::lock_guard<std::mutex> lock(latency_mutex_);
     critical_latencies_.clear();
     normal_latencies_.clear();
@@ -430,6 +455,21 @@ constexpr size_t BACKPRESSURE_WARN_THRESHOLD = 200;
 void DataFlowReactor::handle_events() {
     pool_.release();
 
+    // v2.3: 同步 MPSC 队列的 dropped 计数到 reactor 统计（实例变量，非 static）
+    uint64_t current_dropped = critical_queue_.dropped_count();
+    uint64_t new_dropped = current_dropped - last_queue_dropped_;
+    last_queue_dropped_ = current_dropped;
+    if (new_dropped > 0) {
+        uint64_t total = critical_count_last_ + normal_count_last_;
+        if (total > 0) {
+            uint64_t c_drop = new_dropped * critical_count_last_ / total;
+            critical_dropped_.fetch_add(c_drop, std::memory_order_relaxed);
+            normal_dropped_.fetch_add(new_dropped - c_drop, std::memory_order_relaxed);
+        } else {
+            critical_dropped_.fetch_add(new_dropped, std::memory_order_relaxed);
+        }
+    }
+
     // 1. CRITICAL + NORMAL 通道（MPSC，绝对优先）
     CriticalSample cs;
     uint64_t critical_count = 0;
@@ -437,10 +477,16 @@ void DataFlowReactor::handle_events() {
     while (critical_queue_.pop(cs)) {
         auto it = handler_index_.find(cs.handler_hash);
         if (it != handler_index_.end()) [[likely]] {
-            handlers_[it->second].callback(std::span<const uint8_t>(cs.payload));
+            auto& handler = handlers_[it->second];
             
-            // 根据 handler 的优先级统计
-            if (handlers_[it->second].priority == TopicPriority::CRITICAL) {
+            // v2.3: 计算从入队到回调完成的延迟
+            auto now = std::chrono::steady_clock::now();
+            double latency_us = std::chrono::duration<double, std::micro>(now - cs.enqueue_time).count();
+            record_latency(handler.priority, latency_us);
+            
+            handler.callback(std::span<const uint8_t>(cs.payload));
+            
+            if (handler.priority == TopicPriority::CRITICAL) {
                 ++critical_count;
             } else {
                 ++normal_count;
@@ -449,21 +495,34 @@ void DataFlowReactor::handle_events() {
     }
     critical_processed_.fetch_add(critical_count, std::memory_order_relaxed);
     normal_processed_.fetch_add(normal_count, std::memory_order_relaxed);
+    critical_count_last_ = critical_count;
+    normal_count_last_ = normal_count;
     
     uint64_t total_processed = critical_count + normal_count;
     if (total_processed > BACKPRESSURE_WARN_THRESHOLD) [[unlikely]]
         spdlog::warn("MPSC backpressure: {} frames/cycle", total_processed);
 
-    // 2. BACKGROUND 通道（Latest-only）
+    // 2. BACKGROUND 通道（Latest-only，带延迟和 dropped 统计）
     uint64_t background_count = 0;
-    background_cache_.drain([this, &background_count](uint64_t hash, std::vector<uint8_t>&& payload) {
+    background_cache_.drain([this, &background_count](uint64_t hash, std::vector<uint8_t>&& payload, std::chrono::steady_clock::time_point put_time) {
         auto it = handler_index_.find(hash);
         if (it != handler_index_.end()) [[likely]] {
+            // v2.3: BACKGROUND 端到端延迟（put_time → drain 处理完成）
+            auto now = std::chrono::steady_clock::now();
+            double latency_us = std::chrono::duration<double, std::micro>(now - put_time).count();
+            record_latency(TopicPriority::BACKGROUND, latency_us);
+
             handlers_[it->second].callback(std::span<const uint8_t>(payload));
             ++background_count;
         }
     });
     background_processed_.fetch_add(background_count, std::memory_order_relaxed);
+
+    // v2.3: BACKGROUND dropped 增量同步（实例变量，非 static）
+    uint64_t bg_current_dropped = background_cache_.get_total_dropped();
+    uint64_t bg_new_dropped = bg_current_dropped - last_bg_dropped_;
+    last_bg_dropped_ = bg_current_dropped;
+    background_dropped_.fetch_add(bg_new_dropped, std::memory_order_relaxed);
 
     // 3. io_uring 等待：eventfd 唤醒（CRITICAL 到达）或 50ms 超时（BACKGROUND 轮询）
     //

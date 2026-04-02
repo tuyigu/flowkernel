@@ -29,7 +29,8 @@ private:
     std::atomic<bool> running_{false};
     std::thread refresh_thread_;
     
-    // 状态数据
+    // 状态数据（v2.3: 加互斥锁防止数据竞争）
+    mutable std::mutex data_mutex_;
     ChannelStats critical_stats_;
     ChannelStats normal_stats_;
     ChannelStats background_stats_;

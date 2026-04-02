@@ -1,679 +1,679 @@
 [
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -Wno-interference-size -DSPDLOG_SHARED_LIB -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -o CMakeFiles/dataflow_kernel.dir/src/main.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/src/main.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -Wno-interference-size -DSPDLOG_SHARED_LIB -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -o CMakeFiles/dataflow_kernel.dir/src/main.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/src/main.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/src/main.cpp",
   "output": "CMakeFiles/dataflow_kernel.dir/src/main.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -Wno-interference-size -DSPDLOG_SHARED_LIB -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -o CMakeFiles/dataflow_kernel.dir/src/reactor.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/src/reactor.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -Wno-interference-size -DSPDLOG_SHARED_LIB -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -o CMakeFiles/dataflow_kernel.dir/src/reactor.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/src/reactor.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/src/reactor.cpp",
   "output": "CMakeFiles/dataflow_kernel.dir/src/reactor.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -Wno-interference-size -DSPDLOG_SHARED_LIB -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -o CMakeFiles/dataflow_kernel.dir/src/config.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/src/config.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -Wno-interference-size -DSPDLOG_SHARED_LIB -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -o CMakeFiles/dataflow_kernel.dir/src/config.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/src/config.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/src/config.cpp",
   "output": "CMakeFiles/dataflow_kernel.dir/src/config.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -Wno-interference-size -DSPDLOG_SHARED_LIB -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -o CMakeFiles/dataflow_kernel.dir/src/tui/tui_app.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/src/tui/tui_app.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -Wno-interference-size -DSPDLOG_SHARED_LIB -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -o CMakeFiles/dataflow_kernel.dir/src/tui/tui_app.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/src/tui/tui_app.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/src/tui/tui_app.cpp",
   "output": "CMakeFiles/dataflow_kernel.dir/src/tui/tui_app.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test -O3 -DNDEBUG -std=gnu++23 -O2 -march=native -Wno-interference-size -DSPDLOG_SHARED_LIB -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -o CMakeFiles/bench.dir/test/bench.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/test/bench.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test -g -std=gnu++23 -O2 -march=native -Wno-interference-size -DSPDLOG_SHARED_LIB -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -o CMakeFiles/bench.dir/test/bench.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/test/bench.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/test/bench.cpp",
   "output": "CMakeFiles/bench.dir/test/bench.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest -O3 -DNDEBUG -std=gnu++23 -Wno-interference-size -o CMakeFiles/test_mpsc_queue.dir/test/test_mpsc_queue.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/test/test_mpsc_queue.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest -g -std=gnu++23 -Wno-interference-size -o CMakeFiles/test_mpsc_queue.dir/test/test_mpsc_queue.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/test/test_mpsc_queue.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/test/test_mpsc_queue.cpp",
   "output": "CMakeFiles/test_mpsc_queue.dir/test/test_mpsc_queue.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest -O3 -DNDEBUG -std=gnu++23 -Wno-interference-size -o CMakeFiles/test_latest_cache.dir/test/test_latest_cache.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/test/test_latest_cache.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest -g -std=gnu++23 -Wno-interference-size -o CMakeFiles/test_latest_cache.dir/test/test_latest_cache.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/test/test_latest_cache.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/test/test_latest_cache.cpp",
   "output": "CMakeFiles/test_latest_cache.dir/test/test_latest_cache.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest -O3 -DNDEBUG -std=gnu++23 -Wno-interference-size -DSPDLOG_SHARED_LIB -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -o CMakeFiles/test_config.dir/test/test_config.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/test/test_config.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest -g -std=gnu++23 -Wno-interference-size -DSPDLOG_SHARED_LIB -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -o CMakeFiles/test_config.dir/test/test_config.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/test/test_config.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/test/test_config.cpp",
   "output": "CMakeFiles/test_config.dir/test/test_config.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest -O3 -DNDEBUG -std=gnu++23 -Wno-interference-size -DSPDLOG_SHARED_LIB -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -o CMakeFiles/test_config.dir/src/config.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/src/config.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest -g -std=gnu++23 -Wno-interference-size -DSPDLOG_SHARED_LIB -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -o CMakeFiles/test_config.dir/src/config.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/src/config.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/src/config.cpp",
   "output": "CMakeFiles/test_config.dir/src/config.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/screen.dir/src/ftxui/screen/box.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/screen/box.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/screen.dir/src/ftxui/screen/box.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/screen/box.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/screen/box.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/box.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/screen.dir/src/ftxui/screen/color.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/screen/color.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/screen.dir/src/ftxui/screen/color.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/screen/color.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/screen/color.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/color.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/screen.dir/src/ftxui/screen/color_info.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/screen/color_info.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/screen.dir/src/ftxui/screen/color_info.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/screen/color_info.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/screen/color_info.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/color_info.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/screen.dir/src/ftxui/screen/screen.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/screen/screen.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/screen.dir/src/ftxui/screen/screen.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/screen/screen.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/screen/screen.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/screen.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/screen.dir/src/ftxui/screen/string.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/screen/string.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/screen.dir/src/ftxui/screen/string.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/screen/string.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/screen/string.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/string.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/screen.dir/src/ftxui/screen/terminal.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/screen/terminal.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/screen.dir/src/ftxui/screen/terminal.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/screen/terminal.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/screen/terminal.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/terminal.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/automerge.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/automerge.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/automerge.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/automerge.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/automerge.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/automerge.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/blink.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/blink.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/blink.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/blink.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/blink.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/blink.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/bold.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/bold.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/bold.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/bold.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/bold.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/bold.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/hyperlink.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/hyperlink.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/hyperlink.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/hyperlink.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/hyperlink.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/hyperlink.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/border.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/border.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/border.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/border.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/border.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/border.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/box_helper.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/box_helper.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/box_helper.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/box_helper.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/box_helper.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/box_helper.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/canvas.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/canvas.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/canvas.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/canvas.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/canvas.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/canvas.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/clear_under.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/clear_under.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/clear_under.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/clear_under.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/clear_under.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/clear_under.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/color.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/color.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/color.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/color.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/color.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/color.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/composite_decorator.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/composite_decorator.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/composite_decorator.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/composite_decorator.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/composite_decorator.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/composite_decorator.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/dbox.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/dbox.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/dbox.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/dbox.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/dbox.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/dbox.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/dim.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/dim.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/dim.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/dim.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/dim.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/dim.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/flex.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/flex.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/flex.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/flex.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/flex.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/flex.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/flexbox.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/flexbox.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/flexbox.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/flexbox.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/flexbox.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/flexbox.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/flexbox_config.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/flexbox_config.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/flexbox_config.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/flexbox_config.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/flexbox_config.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/flexbox_config.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/flexbox_helper.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/flexbox_helper.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/flexbox_helper.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/flexbox_helper.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/flexbox_helper.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/flexbox_helper.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/focus.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/focus.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/focus.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/focus.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/focus.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/focus.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/frame.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/frame.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/frame.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/frame.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/frame.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/frame.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/gauge.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/gauge.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/gauge.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/gauge.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/gauge.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/gauge.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/graph.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/graph.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/graph.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/graph.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/graph.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/graph.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/gridbox.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/gridbox.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/gridbox.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/gridbox.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/gridbox.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/gridbox.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/hbox.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/hbox.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/hbox.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/hbox.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/hbox.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/hbox.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/inverted.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/inverted.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/inverted.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/inverted.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/inverted.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/inverted.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/linear_gradient.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/linear_gradient.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/linear_gradient.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/linear_gradient.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/linear_gradient.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/linear_gradient.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/node.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/node.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/node.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/node.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/node.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/node.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/node_decorator.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/node_decorator.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/node_decorator.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/node_decorator.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/node_decorator.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/node_decorator.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/paragraph.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/paragraph.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/paragraph.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/paragraph.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/paragraph.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/paragraph.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/reflect.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/reflect.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/reflect.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/reflect.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/reflect.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/reflect.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/scroll_indicator.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/scroll_indicator.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/scroll_indicator.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/scroll_indicator.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/scroll_indicator.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/scroll_indicator.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/separator.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/separator.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/separator.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/separator.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/separator.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/separator.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/size.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/size.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/size.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/size.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/size.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/size.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/spinner.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/spinner.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/spinner.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/spinner.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/spinner.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/spinner.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/strikethrough.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/strikethrough.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/strikethrough.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/strikethrough.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/strikethrough.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/strikethrough.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/table.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/table.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/table.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/table.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/table.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/table.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/text.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/text.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/text.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/text.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/text.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/text.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/underlined.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/underlined.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/underlined.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/underlined.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/underlined.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/underlined.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/underlined_double.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/underlined_double.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/underlined_double.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/underlined_double.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/underlined_double.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/underlined_double.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/util.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/util.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/util.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/util.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/util.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/util.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/vbox.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/vbox.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/dom.dir/src/ftxui/dom/vbox.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/vbox.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/dom/vbox.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/vbox.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/animation.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/animation.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/animation.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/animation.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/animation.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/animation.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/button.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/button.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/button.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/button.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/button.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/button.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/catch_event.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/catch_event.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/catch_event.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/checkbox.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/checkbox.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/checkbox.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/collapsible.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/collapsible.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/collapsible.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/component.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/component.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/component.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/component.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/component.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/component_options.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/component_options.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/component_options.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/container.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/container.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/container.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/container.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/container.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/container.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/dropdown.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/dropdown.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/dropdown.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/event.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/event.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/event.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/event.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/event.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/event.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/hoverable.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/hoverable.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/hoverable.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/hoverable.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/hoverable.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/hoverable.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/input.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/input.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/input.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/input.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/input.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/input.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/loop.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/loop.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/loop.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/loop.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/loop.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/loop.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/maybe.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/maybe.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/maybe.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/menu.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/menu.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/menu.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/menu.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/menu.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/modal.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/modal.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/modal.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/modal.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/modal.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/modal.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/radiobox.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/radiobox.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/radiobox.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/renderer.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/renderer.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/renderer.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/resizable_split.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/resizable_split.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/resizable_split.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/screen_interactive.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/screen_interactive.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/screen_interactive.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/slider.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/slider.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/slider.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/slider.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/slider.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/terminal_input_parser.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/terminal_input_parser.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/terminal_input_parser.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/util.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/util.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/util.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/util.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/util.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/util.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-build",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -O3 -DNDEBUG -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/window.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/window.cpp",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/include -g -std=gnu++23 -o CMakeFiles/component.dir/src/ftxui/component/window.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/window.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/ftxui-src/src/ftxui/component/window.cpp",
   "output": "_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/window.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/contrib/graphbuilder.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/contrib/graphbuilder.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/contrib/graphbuilder.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/contrib/graphbuilder.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/contrib/graphbuilder.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/contrib/graphbuilder.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/contrib/graphbuilderadapter.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/contrib/graphbuilderadapter.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/contrib/graphbuilderadapter.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/contrib/graphbuilderadapter.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/contrib/graphbuilderadapter.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/contrib/graphbuilderadapter.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/binary.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/binary.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/binary.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/binary.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/binary.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/binary.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/convert.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/convert.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/convert.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/convert.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/convert.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/convert.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/depthguard.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/depthguard.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/depthguard.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/depthguard.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/depthguard.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/depthguard.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/directives.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/directives.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/directives.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/directives.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/directives.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/directives.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/emit.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/emit.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/emit.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/emit.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/emit.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/emit.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/emitfromevents.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/emitfromevents.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/emitfromevents.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/emitfromevents.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/emitfromevents.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/emitfromevents.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/emitter.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/emitter.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/emitter.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/emitter.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/emitter.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/emitter.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/emitterstate.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/emitterstate.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/emitterstate.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/emitterstate.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/emitterstate.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/emitterstate.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/emitterutils.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/emitterutils.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/emitterutils.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/emitterutils.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/emitterutils.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/emitterutils.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/exceptions.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/exceptions.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/exceptions.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/exceptions.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/exceptions.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/exceptions.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/exp.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/exp.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/exp.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/exp.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/exp.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/exp.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/memory.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/memory.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/memory.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/memory.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/memory.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/memory.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/node.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/node.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/node.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/node.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/node.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/node.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/node_data.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/node_data.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/node_data.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/node_data.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/node_data.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/node_data.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/nodebuilder.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/nodebuilder.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/nodebuilder.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/nodebuilder.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/nodebuilder.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/nodebuilder.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/nodeevents.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/nodeevents.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/nodeevents.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/nodeevents.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/nodeevents.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/nodeevents.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/null.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/null.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/null.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/null.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/null.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/null.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/ostream_wrapper.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/ostream_wrapper.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/ostream_wrapper.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/ostream_wrapper.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/ostream_wrapper.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/ostream_wrapper.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/parse.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/parse.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/parse.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/parse.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/parse.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/parse.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/parser.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/parser.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/parser.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/parser.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/parser.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/parser.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/regex_yaml.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/regex_yaml.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/regex_yaml.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/regex_yaml.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/regex_yaml.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/regex_yaml.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/scanner.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/scanner.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/scanner.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/scanner.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/scanner.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/scanner.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/scanscalar.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/scanscalar.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/scanscalar.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/scanscalar.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/scanscalar.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/scanscalar.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/scantag.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/scantag.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/scantag.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/scantag.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/scantag.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/scantag.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/scantoken.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/scantoken.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/scantoken.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/scantoken.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/scantoken.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/scantoken.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/simplekey.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/simplekey.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/simplekey.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/simplekey.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/simplekey.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/simplekey.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/singledocparser.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/singledocparser.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/singledocparser.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/singledocparser.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/singledocparser.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/singledocparser.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/stream.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/stream.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/stream.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/stream.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/stream.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/stream.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-build",
-  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -O3 -DNDEBUG -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/tag.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/tag.cpp",
+  "command": "/usr/bin/c++ -DYAML_CPP_STATIC_DEFINE -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src -g -std=gnu++23 -fPIC -o CMakeFiles/yaml-cpp.dir/src/tag.cpp.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/tag.cpp",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/yaml-cpp-src/src/tag.cpp",
   "output": "_deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/tag.cpp.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-build/googlemock",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googlemock/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googlemock -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest -O3 -DNDEBUG -std=c++23 -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o CMakeFiles/gmock.dir/src/gmock-all.cc.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googlemock/src/gmock-all.cc",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googlemock/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googlemock -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest -g -std=c++23 -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o CMakeFiles/gmock.dir/src/gmock-all.cc.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googlemock/src/gmock-all.cc",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googlemock/src/gmock-all.cc",
   "output": "_deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-build/googlemock",
-  "command": "/usr/bin/c++  -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googlemock/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googlemock -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest -O3 -DNDEBUG -std=c++23 -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o CMakeFiles/gmock_main.dir/src/gmock_main.cc.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googlemock/src/gmock_main.cc",
+  "command": "/usr/bin/c++  -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googlemock/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googlemock -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest -g -std=c++23 -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o CMakeFiles/gmock_main.dir/src/gmock_main.cc.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googlemock/src/gmock_main.cc",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googlemock/src/gmock_main.cc",
   "output": "_deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-build/googletest",
-  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest -O3 -DNDEBUG -std=c++23 -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o CMakeFiles/gtest.dir/src/gtest-all.cc.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest/src/gtest-all.cc",
+  "command": "/usr/bin/c++  -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest/include -I/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest -g -std=c++23 -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o CMakeFiles/gtest.dir/src/gtest-all.cc.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest/src/gtest-all.cc",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest/src/gtest-all.cc",
   "output": "_deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o"
 },
 {
   "directory": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-build/googletest",
-  "command": "/usr/bin/c++  -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest -O3 -DNDEBUG -std=c++23 -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest/src/gtest_main.cc",
+  "command": "/usr/bin/c++  -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest/include -isystem /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest -g -std=c++23 -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -c /home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest/src/gtest_main.cc",
   "file": "/home/wss/Dev/JAZZY/move/flowkernel/build_test/_deps/googletest-src/googletest/src/gtest_main.cc",
   "output": "_deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o"
 }

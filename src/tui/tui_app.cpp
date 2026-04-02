@@ -48,6 +48,7 @@ void TUIApp::stop() {
 }
 
 void TUIApp::refresh_data() {
+    std::lock_guard<std::mutex> lock(data_mutex_);
     critical_stats_ = reactor_.get_critical_stats();
     normal_stats_ = reactor_.get_normal_stats();
     background_stats_ = reactor_.get_background_stats();
@@ -102,6 +103,7 @@ void TUIApp::setup_ui() {
 }
 
 Element TUIApp::render_header() {
+    std::lock_guard<std::mutex> lock(data_mutex_);
     std::string uptime = format_duration(uptime_seconds_);
     
     Elements elements;
@@ -113,6 +115,7 @@ Element TUIApp::render_header() {
 }
 
 Element TUIApp::render_channels() {
+    std::lock_guard<std::mutex> lock(data_mutex_);
     auto channel_row = [this](const std::string& name, const ChannelStats& stats, Color channel_color) {
         Elements elements;
         elements.push_back(text(" ● ") | color(channel_color));
@@ -139,6 +142,7 @@ Element TUIApp::render_channels() {
 }
 
 Element TUIApp::render_sessions() {
+    std::lock_guard<std::mutex> lock(data_mutex_);
     Elements rows;
     
     if (sessions_.empty()) {
@@ -175,6 +179,7 @@ Element TUIApp::render_sessions() {
 }
 
 Element TUIApp::render_handlers() {
+    std::lock_guard<std::mutex> lock(data_mutex_);
     Elements rows;
     
     for (const auto& handler : handlers_) {

@@ -30,6 +30,8 @@ struct LatestSampleSlot {
     bool                    has_data    = false;
     uint64_t                handler_hash = 0;
     std::atomic<uint64_t>   drop_count  {0}; // 被覆盖丢弃的旧帧数
+    // v2.3: 记录写入时间，用于计算端到端延迟
+    std::chrono::steady_clock::time_point put_time;
 
     /**
      * @brief 生产者调用：写入最新帧（覆盖旧帧，记录丢帧）
@@ -48,14 +50,16 @@ struct LatestSampleSlot {
         }
         payload.assign(data, data + len);
         handler_hash = hash;
+        put_time     = std::chrono::steady_clock::now();
         has_data     = true;
         lock_.clear(std::memory_order_release);
     }
 
     /**
      * @brief 消费者调用：取出最新帧并清空槽位（如有）
+     * 返回：{handler_hash, payload, put_time}
      */
-    std::optional<std::pair<uint64_t, std::vector<uint8_t>>> take() {
+    std::optional<std::tuple<uint64_t, std::vector<uint8_t>, std::chrono::steady_clock::time_point>> take() {
         while (lock_.test_and_set(std::memory_order_acquire)) {
 #if defined(__x86_64__) || defined(__i386__)
             __builtin_ia32_pause();
@@ -68,7 +72,7 @@ struct LatestSampleSlot {
             return std::nullopt;
         }
         has_data = false;
-        auto result = std::make_pair(handler_hash, std::move(payload));
+        auto result = std::make_tuple(handler_hash, std::move(payload), put_time);
         lock_.clear(std::memory_order_release);
         return result;
     }
@@ -125,28 +129,38 @@ public:
     }
 
     /**
-     * @brief 遍历所有槽位，消费每个话题的最新帧
+     * @brief 遍历所有槽位，消费每个话题的最新帧（含写入时间戳）
      */
-    void drain(std::function<void(uint64_t, std::vector<uint8_t>&&)> consumer) {
+    void drain(std::function<void(uint64_t, std::vector<uint8_t>&&, std::chrono::steady_clock::time_point)> consumer) {
         std::shared_lock<std::shared_mutex> lock(map_mtx_);
         for (auto& [hash, slot] : slots_) {
             auto sample = slot->take();
             if (sample) {
-                consumer(sample->first, std::move(sample->second));
+                consumer(std::get<0>(*sample), std::move(std::get<1>(*sample)), std::get<2>(*sample));
             }
         }
     }
 
     /**
-     * @brief 返回所有 BACKGROUND 话题的累计丢帧统计
+     * @brief 返回所有 BACKGROUND 话题的累计丢帧总数
+     */
+    [[nodiscard]] uint64_t get_total_dropped() const noexcept {
+        std::shared_lock<std::shared_mutex> lock(map_mtx_);
+        uint64_t total = 0;
+        for (auto& [hash, slot] : slots_) {
+            total += slot->drop_count.load(std::memory_order_relaxed);
+        }
+        return total;
+    }
+
+    /**
+     * @brief 返回所有 BACKGROUND 话题的累计丢帧统计（诊断用）
      */
     void print_drop_stats() const {
         std::shared_lock<std::shared_mutex> lock(map_mtx_);
         for (auto& [hash, slot] : slots_) {
             uint64_t d = slot->drop_count.load(std::memory_order_relaxed);
             if (d > 0) {
-                // 用 hash 标识（调用方可以对照注册表反查路径）
-                // 避免在此引入 path string 存储以降低依赖
                 fprintf(stderr,
                     "[STAT] BACKGROUND slot 0x%016llx: dropped=%llu frames\n",
                     (unsigned long long)hash, (unsigned long long)d);
